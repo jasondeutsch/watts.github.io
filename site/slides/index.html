@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Watts Platform: product thesis, proposed operating model, and validation questions.">
+<title>Watts Platform — Project briefing</title>
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css"><link rel="stylesheet" href="./slides.css">
+</head><body>
+<a class="skip" href="#slides">Skip to briefing</a>
+<header class="header"><a class="brand" href="../">watts<span class="brand-dot">.</span></a><span class="briefing-label">Project briefing</span></header>
+<main id="slides" class="briefing">
+<section class="cover"><div class="eyebrow">Product thesis & proposed platform</div><h1>Watts Platform</h1><p>Declarative workflows, execution evidence, and a basis for evaluating agentic software development.</p><p class="cover-note">A proposal for discussion. Product screens and their metrics are illustrative; capabilities and limitations are described in the briefing.</p><details><summary>Contents · 15 sections</summary><ol><li><a href="#slide-1">The proposition</a></li>
+<li><a href="#slide-2">The problem: adoption without engineering rigor</a></li>
+<li><a href="#slide-3">What Watts gives the team</a></li>
+<li><a href="#slide-4">What the managed platform adds</a></li>
+<li><a href="#slide-5">The improvement cycle</a></li>
+<li><a href="#slide-6">Measure outcomes against resource inputs</a></li>
+<li><a href="#slide-7">A library that reduces reinvention</a></li>
+<li><a href="#slide-8">Architecture: Kubernetes for agentic workflows</a></li>
+<li><a href="#slide-9">Why Watts alongside Claude Code or Cursor?</a></li>
+<li><a href="#slide-10">A reasonable MVP</a></li>
+<li><a href="#slide-11">Benefits to the enterprise</a></li>
+<li><a href="#slide-12">What businesses might pay for</a></li>
+<li><a href="#slide-13">Critical assessment and validation</a></li>
+<li><a href="#slide-14">Evidence notes</a></li>
+<li><a href="#slide-15">The decision</a></li></ol></details></section>
+<section class="slide" id="slide-1" aria-label="The proposition"><div class="slide-number">01 / 15</div><h2>The proposition</h2>
+<p><strong>Make agentic software development auditable, versioned, reproducible, and measurable.</strong></p>
+<p>Watts gives teams a high-level abstraction and reusable building blocks for engineering their agentic software development process. Teams define workflows, run them under explicit contracts, record actions and outcomes, and use the evidence to improve the system over time.</p>
+<p>Watts Platform makes that system easy to adopt and operate. It manages the infrastructure and integration work, while a library of workflows gives teams a practical starting point. Teams retain an inspectable, customizable, versioned definition of how their software work happens.</p>
+<p>The central promise is a disciplined improvement cycle: <strong>define → execute → measure → compare → revise</strong>. Cost efficiency, token efficiency, quality, predictability, and human effort become properties the team can investigate and improve. Gains must be demonstrated through comparable outcomes and resource inputs.</p>
+<p>Status: product hypothesis, reviewed 2026-10-12. Watts is a 0.1.0 proof of concept with typed YAML resources, values-driven templates, pinned local execution definitions, Temporal orchestration, and local Docker workload execution. Complete usage accounting, distributed execution packages, hardened sandboxing, and the managed platform remain open work. Pi/Ralph is an example workload image; local container execution does not establish hardened multi-tenant isolation. The images below are product concepts. See <a href="https://github.com/jasondeutsch/watts/blob/main/docs/workflow-design.md">current architecture</a> and <a href="https://github.com/jasondeutsch/watts/blob/main/docs/stage-communication.md">proposed stage communication</a>.</p>
+</section>
+<section class="slide" id="slide-2" aria-label="The problem: adoption without engineering rigor"><div class="slide-number">02 / 15</div><h2>The problem: adoption without engineering rigor</h2>
+<p>The market thesis is that widespread AI engineering investment is not consistently translating into meaningful, demonstrable organizational outcomes. Giving engineers access to coding agents does not establish an effective development system.</p>
+<p>The failure pattern Watts targets is individual engineers typing requests into Claude Code or Cursor, choosing prompts and tools, deciding when to plan or review, and improvising recovery. Each engineer is left to discover an effective workflow independently. Experiments remain local, successful practices are difficult to reproduce, and the organization learns little from its aggregate investment.</p>
+<p>Without a defined process and comparable records:</p>
+<ul>
+<li><strong>Cost efficiency is unclear.</strong> Subscription or API spend does not show the total cost of producing accepted work, including failed attempts, rework, verification, and human intervention.</li>
+<li><strong>Token efficiency is unclear.</strong> Token counts may be available, but their relationship to useful outcomes is not established. Fewer tokens can mean efficiency, insufficient work, or lower quality.</li>
+<li><strong>Outcomes are disconnected from inputs.</strong> Teams cannot reliably associate accepted quality with model usage, compute, elapsed time, and human effort.</li>
+<li><strong>Behavior is hard to predict.</strong> Completion rates, failure modes, review burden, resource consumption, and recovery depend on an improvised process.</li>
+<li><strong>Workflow design is left to individuals.</strong> Engineers repeatedly invent their own approaches without reusable primitives, a maintained starting point, or controlled evaluations.</li>
+<li><strong>Changes do not accumulate into organizational learning.</strong> A different prompt, model, skill, or tool may appear better without a record of what changed or evidence from comparable runs.</li>
+</ul>
+<p>The gap is the ability to engineer, maintain, and improve the development system as a team. Infrastructure assembly adds another barrier: connecting orchestration, agent execution, tools, storage, telemetry, and evaluation consumes time before the team can investigate whether its workflow is effective.</p>
+</section>
+<section class="slide" id="slide-3" aria-label="What Watts gives the team"><div class="slide-number">03 / 15</div><h2>What Watts gives the team</h2>
+<table>
+<thead>
+<tr>
+<th>Primitive or abstraction</th>
+<th>What the team can do</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Versioned workflow manifests</td>
+<td>Define the process explicitly, track changes, and pin the definition used by a task</td>
+</tr>
+<tr>
+<td>Procedures and execution contracts</td>
+<td>Declare inputs, outputs, tools, checks, permissions, limits, and acceptance evidence</td>
+</tr>
+<tr>
+<td>Agents and reusable resources</td>
+<td>Compose instructions, skills, model settings, and MCP tools without rebuilding the surrounding lifecycle</td>
+</tr>
+<tr>
+<td>Routing and rework</td>
+<td>Make review-to-build loops, human decisions, failure handling, and retry boundaries explicit</td>
+</tr>
+<tr>
+<td>Execution records</td>
+<td>Trace actions, attempts, findings, artifacts, decisions, and accepted changes to the workflow that produced them</td>
+</tr>
+<tr>
+<td>Outcome and resource metrics</td>
+<td>Connect quality and acceptance to tokens, spend, compute, elapsed time, and human effort</td>
+</tr>
+<tr>
+<td>Evaluation cases and rubrics</td>
+<td>Compare workflow versions under declared conditions and retain human judgments</td>
+</tr>
+<tr>
+<td>Shareable workflow packages</td>
+<td>Reuse a team standard, adapt an existing workflow, and reproduce its execution conditions</td>
+</tr>
+</tbody></table>
+<p>This is the target product contract, not a claim that every primitive is implemented today. The abstractions should reduce repeated integration work and provide a stable foundation for iteration. Teams remain responsible for defining useful outcomes and acceptance criteria.</p>
+<p>Reproducibility means reconstructing the definition, inputs, dependencies, and execution conditions. It does not promise identical output from nondeterministic models or changing external services. Record model identifiers and runtime versions, and identify dependencies that cannot be fully pinned.</p>
+</section>
+<section class="slide" id="slide-4" aria-label="What the managed platform adds"><div class="slide-number">04 / 15</div><h2>What the managed platform adds</h2>
+<p>Watts provides the open abstractions. Watts Platform provides the managed environment in which teams use them:</p>
+<ul>
+<li>Hosted orchestration and execution, with isolated attempts and explicit artifact publication.</li>
+<li>Storage and retention for workflow versions, inputs, outputs, logs, findings, and reports.</li>
+<li>Collection and attribution of actions, outcomes, usage, and resource consumption.</li>
+<li>Evaluation runs and comparisons that support team decisions about workflow changes.</li>
+<li>Shared access, approval authority, scoped credentials, and audit records.</li>
+<li>A maintained workflow library, guided setup, and compatibility checks.</li>
+</ul>
+<p>Customers should spend time refining their development process rather than repeatedly gluing infrastructure components together. The platform must preserve the team&#39;s ability to inspect, export, customize, and version that process.</p>
+<p>Managed operations and quick setup support the value proposition. The central offering remains a system for rigorous, measurable agentic development.</p>
+</section>
+<section class="slide" id="slide-5" aria-label="The improvement cycle"><div class="slide-number">05 / 15</div><h2>The improvement cycle</h2>
+<ol>
+<li><strong>Define.</strong> Start from a maintained package and customize its workflows, agents, skills, tools, checks, approvals, and acceptance criteria.</li>
+<li><strong>Execute.</strong> Pin the selected configuration and record attempts, decisions, failures, artifacts, and available resource usage.</li>
+<li><strong>Measure.</strong> Assess accepted quality, resource consumption, reliability, and human intervention using declared cases and rubrics.</li>
+<li><strong>Compare.</strong> Evaluate a candidate configuration against the baseline under comparable conditions, retaining failures and uncertainty.</li>
+<li><strong>Revise.</strong> Adopt or reject the candidate, preserve its rationale and evidence, and continue observing real work.</li>
+</ol>
+<p>Templates describe the intended process; execution records show what actually happened; evals connect a configuration to its outcomes and inputs. Without all three, an apparent improvement may reflect a model change, extra human effort, different task difficulty, or luck.</p>
+<h3>Imagined product screens</h3>
+<p>All task details, timings, costs, and evaluation scores below are illustrative. These are proposed interfaces, not product performance evidence.</p>
+<p><strong>Start with a reusable process and make it your team&#39;s.</strong> The workflow includes skills, tools, checks, and approval policy.</p>
+<p><img src="images/01-start-task-v2.png" alt="Choose a versioned team workflow and describe a task"></p>
+<p><strong>Keep the history of how work happened.</strong> Review findings, candidate revisions, rework, and resource consumption accumulate in the task report.</p>
+<p><img src="images/02-workflow-progress-v2.png" alt="Trace review findings and subsequent build attempts"></p>
+<p><strong>Tie acceptance to evidence.</strong> Inspect the revision, verification, and effort behind the result before publication.</p>
+<p><img src="images/03-review-results-v3.png" alt="Accept the exact reviewed revision with its execution report"></p>
+<p><strong>Evaluate changes to the development system.</strong> Compare versions on the same cases and rubric before adopting a new standard.</p>
+<p><img src="images/04-workflow-evaluation.png" alt="Compare workflow versions using outcomes and resource inputs"></p>
+</section>
+<section class="slide" id="slide-6" aria-label="Measure outcomes against resource inputs"><div class="slide-number">06 / 15</div><h2>Measure outcomes against resource inputs</h2>
+<p>The unit of analysis is a task or evaluation case executed under a particular workflow version. Stage and attempt records explain the aggregate result.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Record and compare</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Outcome</td>
+<td>Accepted, rejected, failed, cancelled, or pending; acceptance evidence and rubric scores</td>
+</tr>
+<tr>
+<td>Quality</td>
+<td>Criterion coverage, meaningful verification, unresolved findings, and human assessment</td>
+</tr>
+<tr>
+<td>Tokens</td>
+<td>Input, output, cached, and other provider-reported categories, with model and attempt attribution</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Model charges, compute, storage, and attributable third-party charges; distinguish actuals from estimates</td>
+</tr>
+<tr>
+<td>Compute</td>
+<td>Available execution duration and resource usage; record the runtime/environment</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>Execution, queueing, approval waits, review, and total elapsed time</td>
+</tr>
+<tr>
+<td>Human effort</td>
+<td>Recorded interventions and review effort, with measured versus self-reported values identified</td>
+</tr>
+<tr>
+<td>Reliability</td>
+<td>Acceptance rate, failure causes, retries, rework, and variation across comparable runs</td>
+</tr>
+</tbody></table>
+<p>For a fixed evaluation batch, calculate total resource consumption per accepted case, including failed and abandoned attempts. Preserve task-level distributions so an average does not hide expensive failures. If no case is accepted, report that fact and total consumption; do not invent a finite cost per accepted case.</p>
+<p>A team&#39;s target is useful accepted work at an appropriate quality bar and resource cost. A lower token count alone is not an improvement, and dollar savings are not equivalent to token savings across differently priced models. Declare which outcome and resource dimensions matter before comparing versions.</p>
+<p>Keep the raw evidence behind every summary. Record the workflow version/hash, case and starting revision, instructions, model identifiers, runtime dependencies, rubric, and scorer. Unknown usage remains unknown. Repeated updates, retries, and worker restarts must not double-count consumption.</p>
+<p>The task report evolves during execution, preserving failures and rework. Analysis may reveal repeated findings, expensive stages, unnecessary context, or a weak completion check. Teams use those observations to design and evaluate changes; automatic recommendations must remain evidence-linked and distinguish inference from observation.</p>
+</section>
+<section class="slide" id="slide-7" aria-label="A library that reduces reinvention"><div class="slide-number">07 / 15</div><h2>A library that reduces reinvention</h2>
+<p>A workflow package includes stages, instructions, skills, tool/MCP requirements, checks, routing, expected artifacts, compatible dependencies, and evaluation cases. It provides a maintained starting point with an explicit completion boundary.</p>
+<p>Initial packages should cover bounded bug fixes and small feature changes for Go business applications and web services. Later packages can cover dependency upgrades, API changes, test improvements, and bounded refactoring.</p>
+<p>Teams can configure a supplied package, fork it, or create their own. Shared primitives let them reuse a review stage, lint policy, or skill without reconstructing the whole system. Package changes are versioned and evaluated; adopting an update must not silently alter active tasks.</p>
+<p>The library should grow through documented compatibility, observed failure modes, and evaluation evidence. A template gallery without maintenance or measurement does not establish an effective development process. Sharing requires separating portable definitions from project-specific credentials, private context, and artifacts.</p>
+</section>
+<section class="slide" id="slide-8" aria-label="Architecture: Kubernetes for agentic workflows"><div class="slide-number">08 / 15</div><h2>Architecture: Kubernetes for agentic workflows</h2>
+<p>The analogy describes a high-level, declarative contract over execution machinery. Teams define and version what should run, while the system resolves configuration, executes work, and records what happened.</p>
+<p>The resource model separates responsibilities:</p>
+<ul>
+<li><strong>Workflow:</strong> connects work, binds inputs, and owns routing, approval policy, and overall limits.</li>
+<li><strong>Procedure:</strong> defines model-free work such as commands and checks; approval/event waits remain orchestration states.</li>
+<li><strong>Agent:</strong> specializes executable work with a model, runtime, identity, instructions, skills, and tools.</li>
+<li><strong>ConfigMap and Secret:</strong> supply scoped configuration and credential references.</li>
+</ul>
+<p>A Watts package groups these resources; the proposed package model supports multiple named Workflows without an additional grouping Kind. Values-driven templates make the package customizable. An isolated workload is the proposed basic execution primitive for Agent and executable Procedure attempts; Pi and its Ralph tool run inside that boundary. Resource definitions, running instances, and execution evidence remain distinct.</p>
+<p>The current core implements typed YAML resources, package templating/composition, pinned local definitions, and Temporal execution. The distributed target adds self-contained packages, isolated workspaces, explicit revision publication, and durable artifact transfer. Temporal retains workflow orchestration; a local container backend or Kubernetes can supply execution capacity. See <a href="https://github.com/jasondeutsch/watts/blob/main/docs/container-workloads.md">container workloads</a> and <a href="https://github.com/jasondeutsch/watts/blob/main/docs/package-runtime-layout.md">package/runtime separation</a>.</p>
+<p>The analogy should clarify ownership rather than dictate infrastructure scope. Customers should not need to operate Kubernetes or Temporal. Source-host publication is an adapter; Git is not a Watts core dependency.</p>
+</section>
+<section class="slide" id="slide-9" aria-label="Why Watts alongside Claude Code or Cursor?"><div class="slide-number">09 / 15</div><h2>Why Watts alongside Claude Code or Cursor?</h2>
+<p>Claude Code provides skills, hooks, tools, subagents, and an Agent SDK. Cursor provides cloud agents and scheduled/event-driven automations. These products already support substantial automation. Feature context checked 2026-10-11: <a href="https://code.claude.com/docs/en/overview">Claude Code</a>, <a href="https://cursor.com/docs/cloud-agent">Cursor Cloud Agents</a>, <a href="https://cursor.com/docs/cloud-agent/automations">Cursor Automations</a>.</p>
+<p>The problem Watts addresses is how an organization engineers and improves its use of agents. In the ad hoc pattern, the individual chooses the workflow and the organization lacks a comparable record of process, outcomes, and resource inputs. Watts makes the team process explicit, versionable, reusable, and measurable.</p>
+<table>
+<thead>
+<tr>
+<th>Organization&#39;s question</th>
+<th>Proposed Watts contribution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Which process produced this result?</td>
+<td>A pinned workflow version and a trace of stages, attempts, decisions, and artifacts</td>
+</tr>
+<tr>
+<td>What resources did the result consume?</td>
+<td>Attributable metrics covering successful work, failures, and rework</td>
+</tr>
+<tr>
+<td>Did a workflow change improve efficiency?</td>
+<td>Comparable evaluations of quality and resource inputs, retaining earlier versions</td>
+</tr>
+<tr>
+<td>Can another engineer reproduce the process?</td>
+<td>Shareable manifests, reusable resources, and declared execution conditions</td>
+</tr>
+<tr>
+<td>How do we stop every engineer starting from scratch?</td>
+<td>Maintained workflow packages and reusable team building blocks</td>
+</tr>
+<tr>
+<td>Who assembles and operates the underlying system?</td>
+<td>Watts Platform supplies managed execution, storage, instrumentation, and evaluation operations</td>
+</tr>
+</tbody></table>
+<p>A team can build a disciplined system with existing tools, scripts, CI, and observability. Watts must offer a useful abstraction and less integration work, not claim that other products cannot support rigor. Teams already satisfied with their process may have no reason to adopt it.</p>
+<p>The target contract should support preferred coding tools as executors or coordinators. Claude Code and Cursor adapters are potential integrations, not existing Watts capabilities. The platform should preserve agent choice as supported adapters become available.</p>
+<p>Temporal, Langfuse, LangSmith, and execution infrastructure can supply components. Watts&#39; proposition is the coherent workflow abstraction and improvement cycle, with the platform managing the component assembly. Integration alone is insufficient if the resulting process remains opaque or hard to evaluate.</p>
+</section>
+<section class="slide" id="slide-10" aria-label="A reasonable MVP"><div class="slide-number">10 / 15</div><h2>A reasonable MVP</h2>
+<p><strong>A managed environment in which a team can define a Go development workflow, run it, measure its outcomes and inputs, and evaluate a revised version.</strong></p>
+<p>Start with one supported Go service profile, one agent adapter, and two workflow packages: bounded bug repair and small feature implementation. The <a href="https://github.com/jasondeutsch/watts/blob/main/resources/examples/go_generalist/README.md">Go generalist example</a> is a seed, not evidence of cloud readiness.</p>
+<p>The minimum usable product includes:</p>
+<ul>
+<li>Versioned, validated workflow definitions and a file-based customization path for stages, skills, MCP tools, checks, and routing.</li>
+<li>Guided project setup, compatibility checks, managed orchestration, and isolated execution.</li>
+<li>Task/stage/attempt records, artifact/revision bindings, complete diagnostic output, explicit decisions, and recovery actions.</li>
+<li>An evolving report connecting outcomes with available token usage, spend, execution time, and recorded human intervention.</li>
+<li>Fixed evaluation cases, a shared rubric, manual scoring, and exportable comparisons between workflow versions.</li>
+<li>Controlled adoption of a candidate workflow and evidence linking each task to its selected version.</li>
+<li>Basic team access, tenant isolation, scoped credentials, spend limits, and evidence retention/export/deletion.</li>
+<li>Explicit publication of an accepted change set or draft pull request; no unattended production deployment.</li>
+</ul>
+<p>An elaborate visual workflow editor or analytics suite is unnecessary. Files, clear task views, trustworthy records, and simple comparative reports are enough to test the proposition. Metrics and evaluation belong in the initial learning cycle; they cannot all be postponed while the product sells only agent hosting.</p>
+<p>Defer multiple languages, broad executor support, a marketplace, automatic optimization, customer-operated clusters, dedicated enterprise deployments, and a large connector catalog. A customer should not need to learn Temporal or manage workers to use the hosted product.</p>
+<p>MVP acceptance: a team can run a baseline workflow, change it, rerun declared cases, and inspect differences in outcomes and resource consumption. Failures remain in the comparison. The team can explain what changed, decide which version to adopt, and reproduce the setup without hidden operator work. A favorable comparison is not required; revealing that a change made things worse is useful functionality.</p>
+</section>
+<section class="slide" id="slide-11" aria-label="Benefits to the enterprise"><div class="slide-number">11 / 15</div><h2>Benefits to the enterprise</h2>
+<p>The enterprise value is a visible, governable process for agent work across teams. These are proposed benefits and engineering obligations, not claims that the prototype already provides enterprise controls or certified compliance.</p>
+<table>
+<thead>
+<tr>
+<th>Benefit</th>
+<th>What Watts Platform should provide</th>
+<th>Honest boundary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Observability</td>
+<td>A task → workflow version → stage → attempt trace, with logs, tool events, findings, queue/wait time, and linked artifacts</td>
+<td>Only instrumented actions are observable. Missing telemetry must be visible; a transcript is not proof that all external effects were captured.</td>
+</tr>
+<tr>
+<td>Spend accountability</td>
+<td>Usage and charges attributed to team, project, task, model, and attempt, including failures and rework; budgets and reconciliation with provider billing</td>
+<td>Estimates and actual charges differ. Subscriptions, shared infrastructure, and unreported usage complicate allocation. Budget enforcement can have in-flight overshoot and must state its limits.</td>
+</tr>
+<tr>
+<td>Safety and containment</td>
+<td>Isolated workloads, restricted filesystem/network access, scoped credentials, resource limits, cancellation, and explicit publication authority</td>
+<td>Prompt guardrails are not a sandbox. Containers require deliberate permissions and do not guarantee safe code, prevent every escape, or remove human accountability.</td>
+</tr>
+<tr>
+<td>Auditability</td>
+<td>Pinned definitions and input identities, attributable decisions, exact reviewed revisions, and retained verification/publication evidence</td>
+<td>Ordinary logs are not tamper-evident audit records. Define integrity protection, access, retention, export, and deletion before making stronger claims. Model reasoning and every internal decision may not be observable.</td>
+</tr>
+<tr>
+<td>Governance</td>
+<td>Approved workflow versions, supported runtime/model policies, role-based approval authority, controlled exceptions, and a record of policy changes</td>
+<td>A policy in a manifest is only a declaration until enforced. Changes and overrides require attributable authority; governance must not become a rubber-stamp approval process.</td>
+</tr>
+<tr>
+<td>Data and credential control</td>
+<td>Scoped delivery, tenant boundaries, evidence access controls, redaction, and explicit retention/provider policies</td>
+<td>BYO keys do not prevent data from reaching a model provider. Residency, provider terms, backups, and sensitive transcript storage require separate decisions and verification.</td>
+</tr>
+<tr>
+<td>Organizational learning</td>
+<td>Reusable team processes and comparable evals tied to workflow revisions, accepted quality, resource use, and interventions</td>
+<td>Comparisons depend on representative cases and consistent scoring. Metrics do not establish causality or justify ranking individual engineers by tokens or output volume.</td>
+</tr>
+<tr>
+<td>Operational accountability</td>
+<td>Clear ownership of failed work, compatible runtime versions, recovery procedures, and exportable definitions/evidence</td>
+<td>Managed operations transfer infrastructure work, not responsibility for acceptance criteria or the correctness of published software. Availability and portability promises require tested recovery and export paths.</td>
+</tr>
+</tbody></table>
+<p>A practical management question is: <strong>Which approved process produced this change, who authorized it, what did it consume, and what evidence supports accepting it?</strong> Watts should make that answer available without reconstructing several disconnected systems.</p>
+<p>Capabilities should be phased. The hosted MVP needs tenant isolation, scoped credentials, attributable decisions, usable evidence, and honest usage reporting. Enterprise procurement may additionally require SSO, fine-grained roles, protected audit retention, residency options, incident response commitments, and external assurance. Those are substantial product and operating commitments; none should be implied by calling the platform “enterprise-ready.”</p>
+<p>Current evidence sets a clear limit: the <a href="https://github.com/jasondeutsch/watts/blob/main/evals/go-workflow/runs/2026-10-10-tic-tac-toe/README.md">local Go eval</a> produced a verified game but exposed missing build/review token accounting, interrupted executor recovery problems, mixed worker versions, and a review metadata false positive. It demonstrates useful failure evidence and work still required, not reliable end-to-end delivery or quantified savings.</p>
+</section>
+<section class="slide" id="slide-12" aria-label="What businesses might pay for"><div class="slide-number">12 / 15</div><h2>What businesses might pay for</h2>
+<p>The buyer is an engineering leader or owner of a software delivery function who wants a rigorous, maintainable agent development system. Smaller teams and non-technology companies with limited platform engineering capacity are plausible early customers; they still need a technical owner and meaningful acceptance criteria.</p>
+<p>Paid value is maintained workflow packages plus managed execution and the evidence/control layer described above. Enterprises may value accountability and governance even before efficiency gains are proven, but willingness to pay and procurement requirements must be tested. Smaller customers may prefer a simpler offer; do not force every buyer through enterprise machinery.</p>
+<p>A subscription could cover workflow/version management, collaboration, reporting, evaluations, retention, and support, with understandable execution and model charges. Validate packaging and willingness to pay through pilots rather than assuming demand for another dashboard. Track support and onboarding costs separately from execution costs.</p>
+</section>
+<section class="slide" id="slide-13" aria-label="Critical assessment and validation"><div class="slide-number">13 / 15</div><h2>Critical assessment and validation</h2>
+<p>The idea is credible if teams can use the abstractions to build a measurable development system with less reinvention and integration work. Positive efficiency gains are an empirical question. Auditability makes experiments assessable; it does not make a poor workflow effective.</p>
+<p>The principal risks:</p>
+<ul>
+<li>More stages and agents can increase token consumption, latency, and human review without improving quality.</li>
+<li>Versioned manifests cannot make models deterministic or compensate for inadequate context and acceptance criteria.</li>
+<li>Incomplete usage attribution or inconsistent scoring can produce misleading efficiency comparisons.</li>
+<li>Teams may collect metrics without making disciplined changes or may find simpler automation sufficient.</li>
+<li>Coding tool vendors and observability platforms can expand into workflow management and evaluation.</li>
+<li>A workflow library can become stale, incompatible, or expensive to support across diverse projects.</li>
+<li>Security, sensitive evidence, credential handling, and tenant isolation are operating obligations, not optional later polish.</li>
+</ul>
+<p>Recruit a small set of teams with recurring work and a technical owner. Establish their actual Claude Code/Cursor-plus-CI baseline, include unsuccessful tasks, and record setup effort, review burden, accepted quality, tokens, spend, and elapsed time. Have them make and evaluate workflow changes rather than merely watch a hosted agent run.</p>
+<p>Look for repeat use, understandable evidence, reuse of definitions, changes informed by comparisons, and willingness to pay for the managed system. Evaluate efficiency at the team&#39;s declared quality bar. Do not substitute prompt volume, generated code, or an isolated successful demo for improved delivery.</p>
+<p>Narrow or stop if customers only want a hosted terminal, cannot connect resource inputs to outcomes, never use the iteration loop, or achieve the same useful process with simpler existing tooling. Payment and renewal must eventually support the cost of infrastructure, library maintenance, and support.</p>
+</section>
+<section class="slide" id="slide-14" aria-label="Evidence notes"><div class="slide-number">14 / 15</div><h2>Evidence notes</h2>
+<p>The research supports investigating workflow quality and measurable organizational outcomes, not a universal claim that AI engineering fails. DORA&#39;s March 2026 analysis describes verification overhead, a workflow gap, and the importance of measuring impact rather than generated output; it also reports positive individual productivity perceptions and an association with higher throughput. These mixed findings motivate disciplined measurement. <a href="https://dora.dev/insights/balancing-ai-tensions/">DORA: Balancing AI tensions</a>.</p>
+<p>METR&#39;s early-2025 experiment found a slowdown in a particular experienced open-source developer setting. Its February 2026 update describes selection and measurement difficulties in the follow-up study. Treat those findings as scoped evidence that outcomes and perceptions can diverge, not a current universal estimate for companies, tools, or Watts. <a href="https://metr.org/blog/2026-02-24-uplift-update/">METR: experiment design update</a>.</p>
+<p>The specific prevalence of ad hoc workflow use, the scale of the organizational efficiency gap, and willingness to adopt Watts remain customer-research questions. An “overwhelming majority” claim needs a defined company population and meaningful-outcome measure before being presented as a statistic. A lack of measured improvement is also different from evidence of no improvement.</p>
+</section>
+<section class="slide" id="slide-15" aria-label="The decision"><div class="slide-number">15 / 15</div><h2>The decision</h2>
+<p>Build the smallest managed system that lets a team define a process, run it reliably, and evaluate a revision. Expand enterprise controls as validated customer requirements, with enforcement and evidence behind each promise.</p>
+<p><strong>Teams should be able to build, maintain, and improve their agentic software development system over time—and show what each change achieved.</strong></p>
+</section>
+</main><footer class="footer"><a href="../">Watts project website</a><span>Platform proposal · Open-source core 0.1.0</span><a href="#slides">Back to top ↑</a></footer>
+</body></html>
