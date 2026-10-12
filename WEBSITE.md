@@ -4,21 +4,21 @@ A static technical landing page for Watts and the proposed managed Watts Platfor
 
 ## Preview
 
-From this directory:
+From the `watts-platform` repository root:
 
 ```sh
 python3 -m http.server 8090 --bind 127.0.0.1
 ```
 
-Open http://127.0.0.1:8090/. Publish **the contents of `site/`**, including `assets/`, as the website root. Asset paths are relative, so the same files support a root domain or a GitHub Pages project subpath.
+Open http://127.0.0.1:8090/. The repository-root `index.html`, `assets/`, and `slides/` are the static website. Asset paths are relative, so the same files support a root domain or a GitHub Pages project subpath.
 
 ## GitHub Pages
 
-Copy this directory's contents to the publishing repository's root or `docs/` directory and select that location under **Settings → Pages → Deploy from a branch**. Include `.nojekyll`. Alternatively, upload `site/` as the Pages artifact in an existing deployment workflow. No SPA rewrites are needed.
+In **Settings → Pages**, select **Deploy from a branch**, choose **main** and **/(root)**, then save. The entry point and `.nojekyll` are already at the repository root; no copying or build step is needed. Commit and push the changes to trigger publication. Relative asset paths support GitHub Pages project URLs. See [GitHub publishing-source documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 
 ## S3
 
-Upload this directory's contents to a bucket configured for static website hosting and set `index.html` as its index document. For an HTTPS production site, serve a private S3 bucket through CloudFront with origin access control. No routing fallback or application backend is required. Infrastructure provisioning and deployment are not included.
+Upload `index.html`, `assets/`, and `slides/` to a bucket configured for static website hosting and set `index.html` as its index document. For an HTTPS production site, serve a private S3 bucket through CloudFront with origin access control. No routing fallback or application backend is required. Infrastructure provisioning and deployment are not included.
 
 ## Editing
 
@@ -33,7 +33,7 @@ The public source/documentation links point to `jasondeutsch/watts` on GitHub. U
 
 The pitch is published at `/slides/` (or `<project-subpath>/slides/` on GitHub Pages). It is intentionally absent from the main page and navigation. Its HTML contains `noindex, nofollow`; anyone with the URL can read it. No authentication or routing configuration is required.
 
-Deploy `slides/` along with the rest of `site/`. The briefing includes static copies of the four concept images and links repository documentation to GitHub. It remains readable without JavaScript and has a print layout.
+Deploy the root `slides/` directory along with `index.html` and `assets/`. The briefing includes static copies of the four concept images and links repository documentation to GitHub. It remains readable without JavaScript and has a print layout.
 
 `PITCH.md` is the source. After editing it, regenerate the checked-in HTML with the existing `marked` Markdown renderer:
 

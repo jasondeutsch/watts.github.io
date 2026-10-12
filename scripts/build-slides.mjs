@@ -10,7 +10,7 @@ const source = await readFile(path.join(root, 'PITCH.md'), 'utf8');
 const linkedSource = source.replaceAll('(../watts/', '(https://github.com/jasondeutsch/watts/blob/main/');
 const sections = linkedSource.split(/^## /m);
 const images = [...source.matchAll(/!\[[^\]]*\]\((images\/[^)]+)\)/g)].map(match => match[1]);
-const outputDir = path.join(root, 'site/slides');
+const outputDir = path.join(root, 'slides');
 await mkdir(path.join(outputDir, 'images'), { recursive: true });
 for (const image of new Set(images)) {
   await copyFile(path.join(root, image), path.join(outputDir, image));
