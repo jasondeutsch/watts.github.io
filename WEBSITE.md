@@ -31,11 +31,17 @@ The public source/documentation links point to `jasondeutsch/watts` on GitHub. U
 
 ## Unlinked project briefing
 
+The briefing includes the proposed Core / Cloud / Enterprise / support business model, pricing hypotheses, and a separate licensing discussion. These are proposals, not available commercial plans.
+
 The pitch is published at `/slides/` (or `<project-subpath>/slides/` on GitHub Pages). It is intentionally absent from the main page and navigation. Its HTML contains `noindex, nofollow`; anyone with the URL can read it. No authentication or routing configuration is required.
 
-Deploy the root `slides/` directory along with `index.html` and `assets/`. The briefing includes static copies of the four concept images and links repository documentation to GitHub. It remains readable without JavaScript and has a print layout.
+Deploy the root `slides/` directory along with `index.html` and `assets/`. The supporting notes include static copies of the four concept images and link repository documentation to GitHub. The deck remains readable without JavaScript; printing includes the cover and seven main slides, with supporting notes omitted.
 
-`PITCH.md` is the source. After editing it, regenerate the checked-in HTML with the existing `marked` Markdown renderer:
+`SLIDES.md` is the seven-slide presentation source. `PITCH.md` supplies the expandable supporting notes, including the concept screens, detailed business model, architecture, risks, and evidence. Keep one main point per slide; use the notes for supporting detail rather than shrinking the slide text.
+
+The deck follows [YC’s pitch design guidance](https://www.ycombinator.com/blog/how-to-design-a-better-pitch-deck/): legible type, one idea per slide, and an immediately clear point. Commercial offerings remain proposals, and the prototype eval is not a productivity or traction claim. The cover leads with Watts; ACL remains a supporting feature.
+
+After editing either source, regenerate the checked-in HTML with the existing `marked` Markdown renderer:
 
 ```sh
 node scripts/build-slides.mjs /path/to/marked/lib/marked.esm.js

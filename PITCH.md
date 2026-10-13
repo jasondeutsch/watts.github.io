@@ -69,7 +69,7 @@ Managed operations and quick setup support the value proposition. The central of
 4. **Compare.** Evaluate a candidate configuration against the baseline under comparable conditions, retaining failures and uncertainty.
 5. **Revise.** Adopt or reject the candidate, preserve its rationale and evidence, and continue observing real work.
 
-Templates describe the intended process; execution records show what actually happened; evals connect a configuration to its outcomes and inputs. Without all three, an apparent improvement may reflect a model change, extra human effort, different task difficulty, or luck.
+ACL packages describe the intended process; execution records show what actually happened; evals connect a configuration to its outcomes and inputs. Without all three, an apparent improvement may reflect a model change, extra human effort, different task difficulty, or luck.
 
 ### Imagined product screens
 
@@ -205,15 +205,66 @@ A practical management question is: **Which approved process produced this chang
 
 Capabilities should be phased. The hosted MVP needs tenant isolation, scoped credentials, attributable decisions, usable evidence, and honest usage reporting. Enterprise procurement may additionally require SSO, fine-grained roles, protected audit retention, residency options, incident response commitments, and external assurance. Those are substantial product and operating commitments; none should be implied by calling the platform “enterprise-ready.”
 
-Current evidence sets a clear limit: the [local Go eval](../watts/evals/go-workflow/runs/2026-10-10-tic-tac-toe/README.md) produced a verified game but exposed missing build/review token accounting, interrupted executor recovery problems, mixed worker versions, and a review metadata false positive. It demonstrates useful failure evidence and work still required, not reliable end-to-end delivery or quantified savings.
+Current evidence sets a clear limit: the **CSS refinement eval (2026-10-13)** passed independent acceptance checks in a supervised run, with one planning rejection and about 22 minutes elapsed. It reported 1,945,192 input-plus-output tokens, including cached input; billed cost was unavailable. Useful live progress required private runtime inspection, and the task report had broken approval-evidence links. Evidence is retained in the separately maintained eval archive. This establishes a successful supervised case and concrete product gaps, not unattended reliability, cloud readiness, or quantified savings. Project configuration and independent eval checks are normal setup/verification work; the visibility and reporting gaps are Watts obligations.
 
-## What businesses might pay for
+## Business model: open adoption, paid operations
 
-The buyer is an engineering leader or owner of a software delivery function who wants a rigorous, maintainable agent development system. Smaller teams and non-technology companies with limited platform engineering capacity are plausible early customers; they still need a technical owner and meaningful acceptance criteria.
+**Make Watts useful to adopt independently; sell the operation, organizational controls, and support around it.**
 
-Paid value is maintained workflow packages plus managed execution and the evidence/control layer described above. Enterprises may value accountability and governance even before efficiency gains are proven, but willingness to pay and procurement requirements must be tested. Smaller customers may prefer a simpler offer; do not force every buyer through enterprise machinery.
+HashiCorp is a useful precedent for this commercial structure. HCP Terraform sells hosted workflow management with paid governance and support capabilities; Terraform Enterprise offers the application in a customer-operated environment. See [HCP Terraform plans](https://developer.hashicorp.com/terraform/cloud-docs/overview) and [Terraform Enterprise](https://developer.hashicorp.com/terraform/enterprise). This is a model to adapt, not evidence that Watts has equivalent demand or maturity.
 
-A subscription could cover workflow/version management, collaboration, reporting, evaluations, retention, and support, with understandable execution and model charges. Validate packaging and willingness to pay through pilots rather than assuming demand for another dashboard. Track support and onboarding costs separately from execution costs.
+| Proposed offering | Customer need | Commercial basis |
+| --- | --- | --- |
+| **Watts Core** | Author ACL packages, compose modules, execute workflows, inspect evidence, and evaluate locally | Free, MPL 2.0; adoption and contribution path |
+| **Watts Cloud** | Run team workflows without maintaining orchestration, workers, upgrades, or evidence storage | Organization subscription plus clearly metered hosted execution and storage |
+| **Watts Enterprise** | Apply organization-wide identity, authorization, workflow policy, audit retention, and operational controls | Annual software subscription; cloud enterprise tier first, customer-operated/private deployment later if demand supports it |
+| **Support and enablement** | Obtain supported releases, incident assistance, compatibility guidance, and help establishing a workflow/eval | Support subscription and separately scoped onboarding or training |
+
+These are proposed product boundaries, not available commercial editions. Core should remain a useful execution and authoring system: the language, local module composition, custom adapters, basic diagnostic evidence, and portable definitions are not a deliberately incomplete trial. Paid value comes from reducing operational work and providing verified organizational capabilities.
+
+Minimum hosted safety, credential isolation, and truthful diagnostics belong in every paid cloud plan. Advanced controls can justify an enterprise tier; basic safety must not be an upgrade. Support response commitments address the platform, not a guarantee that generated application code is correct.
+
+## Adoption and expansion
+
+The initial user is a developer or technical owner who wants a repeatable process. The likely buyer is an engineering leader or software-delivery owner accountable for operating that process across a team. Smaller organizations and non-technology companies are plausible early cloud customers when they lack platform engineering capacity; they still need useful acceptance criteria and a technical owner.
+
+1. **Adopt the core.** Run a small workflow, inspect its source and evidence, and adapt a maintained example.
+2. **Establish a team process.** Reuse packages, define verification and approval policy, and evaluate changes against a baseline.
+3. **Buy managed operation.** Move to Cloud when maintaining the execution and evidence infrastructure costs more effort than the subscription saves.
+4. **Expand organizational control.** Buy Enterprise when multiple teams need centrally enforced policy, identity integration, protected records, or defined operating commitments.
+5. **Add support where needed.** Pay for release compatibility, incident response, and bounded enablement rather than bespoke intervention on every task.
+
+Expansion should follow adoption of a useful process, not raw token volume. Usage-based model revenue would reward consumption even when a workflow becomes less efficient; platform value should remain tied to operations, control, and demonstrable customer outcomes.
+
+The ecosystem can grow around reusable ACL modules, maintained workflow packages, Agent images, MCP integrations, and evaluation cases. Start by integrating established providers, identity systems, secret managers, and observability tools. Paid validated packages or partner services are later opportunities, not a reason to build a competing secrets or telemetry product. A marketplace is outside the MVP.
+
+## Packaging, pricing, and unit economics
+
+**Proposed pricing hypothesis: an organization subscription for the platform, transparent charges for resources consumed, and contracted enterprise/support terms.** No prices or revenue forecast are established yet.
+
+| Component | Proposed unit | What customers should understand |
+| --- | --- | --- |
+| Team platform | Organization subscription with stated collaboration, concurrency, and retention allowances | What is included, which limits apply, and the cost of an additional team or capacity |
+| Hosted execution | Published compute/time units, including failed and retried attempts | Which work consumed resources and why; configurable limits, with stated enforcement boundaries |
+| Evidence storage | Included retention/storage allowance plus explicit overage | Storage, export, deletion, and backup behavior; no surprise requirement to retain everything indefinitely |
+| Model usage | BYO provider keys initially; optional managed gateway only with explicit billing terms | Provider charges are separate from Watts fees; cached tokens, estimates, and actual charges are distinguishable |
+| Enterprise and support | Annual organization/deployment contract and defined support scope | Enforced controls, deployment responsibilities, supported versions, and response commitments |
+
+BYO keys let customers retain provider choice and billing relationships. They do not make inference free or prevent data from reaching providers. If Watts later resells model access, the margin and billing responsibility must be explicit rather than hidden in a task price.
+
+Measure contribution margin after compute, storage, telemetry, support, and onboarding costs. Also measure paid conversion, renewal, repeated team use, and accepted outcomes. Separate subscription revenue, resource revenue, and services revenue so a profitable consulting engagement is not mistaken for repeatable platform economics.
+
+Begin with bounded paid pilots of managed Cloud and scoped onboarding. Defer broad on-premises support until enough customers justify its release, recovery, security, and support burden. Avoid a price per successful task until acceptance is consistently defined and verification effort is understood; avoid pricing primarily by tokens when efficiency is part of the promise.
+
+## Licensing and the commercial boundary
+
+The business pattern and the license are separate decisions. HashiCorp announced its move from MPL 2.0 to BSL 1.1 for future product releases on August 10, 2023. Its announcement describes a source-available license with commercial-use conditions aimed at competing offerings. See [the license announcement](https://www.hashicorp.com/en/blog/hashicorp-adopts-business-source-license) and [licensing FAQ](https://www.hashicorp.com/en/license-faq). BSL is not an open-source license; a BSL product should not be marketed as one.
+
+**Watts currently remains MPL 2.0. This pitch does not propose or enact a license change.** MPL is an open-source license with file-level copyleft, rather than a permissive license. It permits commercial use and does not itself reserve competitive hosting to the original vendor. See [Mozilla's MPL FAQ](https://www.mozilla.org/en-US/MPL/2.0/FAQ/) and [the Watts license](../watts/LICENSE).
+
+Under the proposed current-license model, customers pay for managed service, enterprise management software, and support; they retain access to an independently useful core and portable definitions. Commercial packaging of any additional software must respect the licenses of the code it includes. A future source-available restriction would be a separate decision with adoption, ecosystem, contribution, and customer-trust tradeoffs—not an assumed prerequisite for revenue.
+
+The commercial advantage to validate is operating competence: reliable execution, maintained compatibility, credible evidence, useful organizational controls, and support. An open language alone does not establish a business, and a restrictive license alone does not establish customer value.
 
 ## Critical assessment and validation
 
@@ -233,7 +284,7 @@ Recruit a small set of teams with recurring work and a technical owner. Establis
 
 Look for repeat use, understandable evidence, reuse of definitions, changes informed by comparisons, and willingness to pay for the managed system. Evaluate efficiency at the team's declared quality bar. Do not substitute prompt volume, generated code, or an isolated successful demo for improved delivery.
 
-Narrow or stop if customers only want a hosted terminal, cannot connect resource inputs to outcomes, never use the iteration loop, or achieve the same useful process with simpler existing tooling. Payment and renewal must eventually support the cost of infrastructure, library maintenance, and support.
+Narrow or stop if customers only want a hosted terminal, cannot connect resource inputs to outcomes, never use the iteration loop, or achieve the same useful process with simpler existing tooling. Validate that paid operations and controls provide enough value beyond self-managed Core. Payment and renewal must eventually support infrastructure, library maintenance, sales, and support costs; dependence on repeated manual operator rescue is not a scalable platform.
 
 ## Evidence notes
 
@@ -245,6 +296,6 @@ The specific prevalence of ad hoc workflow use, the scale of the organizational 
 
 ## The decision
 
-Build the smallest managed system that lets a team define a process, run it reliably, and evaluate a revision. Expand enterprise controls as validated customer requirements, with enforcement and evidence behind each promise.
+Build the smallest managed system that lets a team define a process, run it reliably, and evaluate a revision. Use an independently useful MPL-licensed core to support adoption; validate paid Cloud and scoped support through pilots. Expand enterprise controls and deployment options as validated customer requirements, with enforcement and evidence behind each promise.
 
 **Teams should be able to build, maintain, and improve their agentic software development system over time—and show what each change achieved.**

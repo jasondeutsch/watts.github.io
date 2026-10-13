@@ -1,15 +1,18 @@
-// Regenerate the static pitch page from PITCH.md. No runtime dependencies.
+// Regenerate the static deck from SLIDES.md, with PITCH.md as supporting notes. No runtime dependencies.
 // Usage: node scripts/build-slides.mjs [path-to-marked-esm-module]
+import { createHash } from 'node:crypto';
 import { readFile, writeFile, mkdir, copyFile } from 'node:fs/promises';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import path from 'node:path';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const { marked } = await import(process.argv[2] ? pathToFileURL(path.resolve(process.argv[2])).href : 'marked');
-const source = await readFile(path.join(root, 'PITCH.md'), 'utf8');
-const linkedSource = source.replaceAll('(../watts/', '(https://github.com/jasondeutsch/watts/blob/main/');
+const source = await readFile(path.join(root, 'SLIDES.md'), 'utf8');
+const notes = await readFile(path.join(root, 'PITCH.md'), 'utf8');
+const linkRepository = text => text.replaceAll('(../watts/', '(https://github.com/jasondeutsch/watts/blob/main/');
+const linkedSource = linkRepository(source);
 const sections = linkedSource.split(/^## /m);
-const images = [...source.matchAll(/!\[[^\]]*\]\((images\/[^)]+)\)/g)].map(match => match[1]);
+const images = [...notes.matchAll(/!\[[^\]]*\]\((images\/[^)]+)\)/g)].map(match => match[1]);
 const outputDir = path.join(root, 'slides');
 await mkdir(path.join(outputDir, 'images'), { recursive: true });
 for (const image of new Set(images)) {
@@ -23,21 +26,24 @@ const slides = sections.slice(1).map((section, index) => {
 });
 const contents = slides.map(slide => `<li><a href="#slide-${slide.number}">${escape(slide.title)}</a></li>`).join('\n');
 const body = slides.map(slide => `<section class="slide" id="slide-${slide.number}" aria-label="${escape(slide.title)}"><div class="slide-number">${String(slide.number).padStart(2, '0')} / ${slides.length}</div>${slide.html}</section>`).join('\n');
+const css = await readFile(path.join(outputDir, 'slides.css'));
+const cssVersion = createHash('sha256').update(css).digest('hex').slice(0, 12);
 const html = `<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Watts Platform: product thesis, proposed operating model, and validation questions.">
-<title>Watts Platform — Project briefing</title>
+<meta name="description" content="Watts: a repeatable, measurable process for agentic software development. Product thesis and proposed business model.">
+<title>Watts — Pitch deck</title>
 <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/style.css"><link rel="stylesheet" href="./slides.css">
+<link rel="stylesheet" href="../assets/style.css"><link rel="stylesheet" href="./slides.css?v=${cssVersion}">
 </head><body>
-<a class="skip" href="#slides">Skip to briefing</a>
-<header class="header"><a class="brand" href="../">watts<span class="brand-dot">.</span></a><span class="briefing-label">Project briefing</span></header>
+<a class="skip" href="#slides">Skip to pitch</a>
+<header class="header"><a class="brand" href="../">watts<span class="brand-dot">.</span></a><span class="briefing-label">Pitch deck</span></header>
 <main id="slides" class="briefing">
-<section class="cover"><div class="eyebrow">Product thesis & proposed platform</div><h1>Watts Platform</h1><p>Declarative workflows, execution evidence, and a basis for evaluating agentic software development.</p><p class="cover-note">A proposal for discussion. Product screens and their metrics are illustrative; capabilities and limitations are described in the briefing.</p><details><summary>Contents · ${slides.length} sections</summary><ol>${contents}</ol></details></section>
+<section class="cover"><div class="eyebrow">Agentic software development</div><h1>Watts</h1><p>Define your team’s process.<br>Measure its outcomes.<br>Improve it over time.</p><p class="cover-note">Open-source prototype · Proposed managed platform</p><details><summary>Contents · ${slides.length} slides</summary><ol>${contents}</ol></details></section>
 ${body}
+<details class="supporting-notes" id="supporting-notes"><summary>Supporting notes · Architecture, product concepts, business model, and risks</summary><div class="notes-content">${marked.parse(linkRepository(notes), { gfm: true })}</div></details>
 </main><footer class="footer"><a href="../">Watts project website</a><span>Platform proposal · Open-source core 0.1.0</span><a href="#slides">Back to top ↑</a></footer>
 </body></html>`;
 await writeFile(path.join(outputDir, 'index.html'), html);
-console.log(`Generated ${slides.length} briefing sections and copied ${new Set(images).size} images.`);
+console.log(`Generated ${slides.length} pitch slides and copied ${new Set(images).size} images.`);

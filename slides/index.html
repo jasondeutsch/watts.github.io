@@ -2,37 +2,105 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Watts Platform: product thesis, proposed operating model, and validation questions.">
-<title>Watts Platform — Project briefing</title>
+<meta name="description" content="Watts: a repeatable, measurable process for agentic software development. Product thesis and proposed business model.">
+<title>Watts — Pitch deck</title>
 <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/style.css"><link rel="stylesheet" href="./slides.css">
+<link rel="stylesheet" href="../assets/style.css"><link rel="stylesheet" href="./slides.css?v=90ac8e532599">
 </head><body>
-<a class="skip" href="#slides">Skip to briefing</a>
-<header class="header"><a class="brand" href="../">watts<span class="brand-dot">.</span></a><span class="briefing-label">Project briefing</span></header>
+<a class="skip" href="#slides">Skip to pitch</a>
+<header class="header"><a class="brand" href="../">watts<span class="brand-dot">.</span></a><span class="briefing-label">Pitch deck</span></header>
 <main id="slides" class="briefing">
-<section class="cover"><div class="eyebrow">Product thesis & proposed platform</div><h1>Watts Platform</h1><p>Declarative workflows, execution evidence, and a basis for evaluating agentic software development.</p><p class="cover-note">A proposal for discussion. Product screens and their metrics are illustrative; capabilities and limitations are described in the briefing.</p><details><summary>Contents · 15 sections</summary><ol><li><a href="#slide-1">The proposition</a></li>
-<li><a href="#slide-2">The problem: adoption without engineering rigor</a></li>
-<li><a href="#slide-3">What Watts gives the team</a></li>
-<li><a href="#slide-4">What the managed platform adds</a></li>
-<li><a href="#slide-5">The improvement cycle</a></li>
-<li><a href="#slide-6">Measure outcomes against resource inputs</a></li>
-<li><a href="#slide-7">A library that reduces reinvention</a></li>
-<li><a href="#slide-8">Architecture: Kubernetes for agentic workflows</a></li>
-<li><a href="#slide-9">Why Watts alongside Claude Code or Cursor?</a></li>
-<li><a href="#slide-10">A reasonable MVP</a></li>
-<li><a href="#slide-11">Benefits to the enterprise</a></li>
-<li><a href="#slide-12">What businesses might pay for</a></li>
-<li><a href="#slide-13">Critical assessment and validation</a></li>
-<li><a href="#slide-14">Evidence notes</a></li>
-<li><a href="#slide-15">The decision</a></li></ol></details></section>
-<section class="slide" id="slide-1" aria-label="The proposition"><div class="slide-number">01 / 15</div><h2>The proposition</h2>
+<section class="cover"><div class="eyebrow">Agentic software development</div><h1>Watts</h1><p>Define your team’s process.<br>Measure its outcomes.<br>Improve it over time.</p><p class="cover-note">Open-source prototype · Proposed managed platform</p><details><summary>Contents · 7 slides</summary><ol><li><a href="#slide-1">Agent adoption leaves the team process undefined</a></li>
+<li><a href="#slide-2">Watts makes the development process explicit</a></li>
+<li><a href="#slide-3">Every accepted change needs an evidence record</a></li>
+<li><a href="#slide-4">Managed execution for teams without a platform team</a></li>
+<li><a href="#slide-5">Open core; paid operations and organizational controls</a></li>
+<li><a href="#slide-6">A working prototype with clear product gaps</a></li>
+<li><a href="#slide-7">Pilot the process against a real team baseline</a></li></ol></details></section>
+<section class="slide" id="slide-1" aria-label="Agent adoption leaves the team process undefined"><div class="slide-number">01 / 7</div><h2>Agent adoption leaves the team process undefined</h2>
+<p>Engineers choose prompts, tools, reviews, and recovery independently.</p>
+<p>Teams struggle to answer:</p>
+<ul>
+<li>Which process produced an accepted change?</li>
+<li>What did it cost, including failures and human review?</li>
+<li>Did the next workflow version improve the result?</li>
+</ul>
+<p><small>Customer hypothesis to validate; not a claim that all teams work this way.</small></p>
+</section>
+<section class="slide" id="slide-2" aria-label="Watts makes the development process explicit"><div class="slide-number">02 / 7</div><h2>Watts makes the development process explicit</h2>
+<p><strong>Define the workflow. Run it. Evaluate a revision.</strong></p>
+<ol>
+<li>Describe agents, tools, checks, approvals, and rework in a versioned package.</li>
+<li>Execute a pinned definition and retain its results and evidence.</li>
+<li>Compare workflow versions on the same tasks and acceptance criteria.</li>
+</ol>
+<p><small>ACL is Watts’ authoring language. Comparable evaluation is the product goal; complete accounting remains open work.</small></p>
+</section>
+<section class="slide" id="slide-3" aria-label="Every accepted change needs an evidence record"><div class="slide-number">03 / 7</div><h2>Every accepted change needs an evidence record</h2>
+<p><strong>Connect the outcome to the process and resources that produced it.</strong></p>
+<ul>
+<li>Workflow version, attempts, and model usage.</li>
+<li>Verification results, review findings, and approval decisions.</li>
+<li>Available tokens, spend, elapsed time, and human intervention.</li>
+</ul>
+<p><small>This is the basis for observability, spend accountability, and governance. Enforced enterprise policy and protected audit retention are proposed capabilities.</small></p>
+</section>
+<section class="slide" id="slide-4" aria-label="Managed execution for teams without a platform team"><div class="slide-number">04 / 7</div><h2>Managed execution for teams without a platform team</h2>
+<p><strong>A maintained starting workflow, customized for the team.</strong></p>
+<p>Watts Platform would operate orchestration, workloads, evidence storage, and upgrades.</p>
+<p>Teams retain their workflow definitions and customize agents, skills, tools, and approval policy.</p>
+<p><small>Initial customer hypothesis: smaller organizations and software teams in non-technology businesses, with a technical owner. The cloud service is proposed.</small></p>
+</section>
+<section class="slide" id="slide-5" aria-label="Open core; paid operations and organizational controls"><div class="slide-number">05 / 7</div><h2>Open core; paid operations and organizational controls</h2>
+<table>
+<thead>
+<tr>
+<th>Offering</th>
+<th>Proposed commercial basis</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Watts Core</td>
+<td>Free, MPL 2.0</td>
+</tr>
+<tr>
+<td>Watts Cloud</td>
+<td>Organization subscription + metered compute and storage</td>
+</tr>
+<tr>
+<td>Watts Enterprise</td>
+<td>Annual contracts for organizational controls and support</td>
+</tr>
+</tbody></table>
+<p>Customers bring their own provider keys initially. Inference charges remain separate.</p>
+<p><small>HashiCorp-inspired business structure. Paid editions, pricing, and customer demand are not established. Scoped onboarding and support are additional services.</small></p>
+</section>
+<section class="slide" id="slide-6" aria-label="A working prototype with clear product gaps"><div class="slide-number">06 / 7</div><h2>A working prototype with clear product gaps</h2>
+<p><strong>One supervised CSS task passed independent acceptance checks.</strong></p>
+<ul>
+<li>About <strong>22 minutes</strong>; one planning rejection.</li>
+<li><strong>1.95 million</strong> reported input + output tokens, including cached input.</li>
+<li>Billed cost unavailable; live visibility and report links needed improvement.</li>
+</ul>
+<p><small>Watts 0.1.0: local Docker execution and Temporal orchestration. This case demonstrates execution, not unattended reliability or measured productivity gains. Historical eval details are in the supporting notes.</small></p>
+</section>
+<section class="slide" id="slide-7" aria-label="Pilot the process against a real team baseline"><div class="slide-number">07 / 7</div><h2>Pilot the process against a real team baseline</h2>
+<p><strong>Start with bounded Go fixes and small feature changes.</strong></p>
+<ol>
+<li>Record the team’s existing coding-agent and CI process.</li>
+<li>Run comparable cases with Watts; retain failures and review effort.</li>
+<li>Revise the workflow and assess quality, resource cost, and repeat use.</li>
+</ol>
+<p><small>Proposed next step: design-partner pilots. Willingness to pay and lower operating effort must be demonstrated before expanding the platform.</small></p>
+</section>
+<details class="supporting-notes" id="supporting-notes"><summary>Supporting notes · Architecture, product concepts, business model, and risks</summary><div class="notes-content"><h1>Watts Platform</h1>
+<h2>The proposition</h2>
 <p><strong>Make agentic software development auditable, versioned, reproducible, and measurable.</strong></p>
 <p>Watts gives teams a high-level abstraction and reusable building blocks for engineering their agentic software development process. Teams define workflows, run them under explicit contracts, record actions and outcomes, and use the evidence to improve the system over time.</p>
 <p>Watts Platform makes that system easy to adopt and operate. It manages the infrastructure and integration work, while a library of workflows gives teams a practical starting point. Teams retain an inspectable, customizable, versioned definition of how their software work happens.</p>
 <p>The central promise is a disciplined improvement cycle: <strong>define → execute → measure → compare → revise</strong>. Cost efficiency, token efficiency, quality, predictability, and human effort become properties the team can investigate and improve. Gains must be demonstrated through comparable outcomes and resource inputs.</p>
 <p>Status: product hypothesis, reviewed 2026-10-13. Watts is a 0.1.0 proof of concept with ACL declarations, typed variables, local modules, pinned local execution definitions, Temporal orchestration, and local Docker workload execution. Complete usage accounting, distributed execution packages, hardened sandboxing, and the managed platform remain open work. Pi/Ralph is an example workload image; local container execution does not establish hardened multi-tenant isolation. The images below are product concepts. See <a href="https://github.com/jasondeutsch/watts/blob/main/docs/workflow-design.md">current architecture</a> and <a href="https://github.com/jasondeutsch/watts/blob/main/docs/stage-communication.md">proposed stage communication</a>.</p>
-</section>
-<section class="slide" id="slide-2" aria-label="The problem: adoption without engineering rigor"><div class="slide-number">02 / 15</div><h2>The problem: adoption without engineering rigor</h2>
+<h2>The problem: adoption without engineering rigor</h2>
 <p>The market thesis is that widespread AI engineering investment is not consistently translating into meaningful, demonstrable organizational outcomes. Giving engineers access to coding agents does not establish an effective development system.</p>
 <p>The failure pattern Watts targets is individual engineers typing requests into Claude Code or Cursor, choosing prompts and tools, deciding when to plan or review, and improvising recovery. Each engineer is left to discover an effective workflow independently. Experiments remain local, successful practices are difficult to reproduce, and the organization learns little from its aggregate investment.</p>
 <p>Without a defined process and comparable records:</p>
@@ -45,8 +113,7 @@
 <li><strong>Changes do not accumulate into organizational learning.</strong> A different prompt, model, skill, or tool may appear better without a record of what changed or evidence from comparable runs.</li>
 </ul>
 <p>The gap is the ability to engineer, maintain, and improve the development system as a team. Infrastructure assembly adds another barrier: connecting orchestration, agent execution, tools, storage, telemetry, and evaluation consumes time before the team can investigate whether its workflow is effective.</p>
-</section>
-<section class="slide" id="slide-3" aria-label="What Watts gives the team"><div class="slide-number">03 / 15</div><h2>What Watts gives the team</h2>
+<h2>What Watts gives the team</h2>
 <table>
 <thead>
 <tr>
@@ -89,8 +156,7 @@
 </tbody></table>
 <p>This is the target product contract, not a claim that every primitive is implemented today. The abstractions should reduce repeated integration work and provide a stable foundation for iteration. Teams remain responsible for defining useful outcomes and acceptance criteria.</p>
 <p>Reproducibility means reconstructing the definition, inputs, dependencies, and execution conditions. It does not promise identical output from nondeterministic models or changing external services. Record model identifiers and runtime versions, and identify dependencies that cannot be fully pinned.</p>
-</section>
-<section class="slide" id="slide-4" aria-label="What the managed platform adds"><div class="slide-number">04 / 15</div><h2>What the managed platform adds</h2>
+<h2>What the managed platform adds</h2>
 <p>Watts provides the open abstractions. Watts Platform provides the managed environment in which teams use them:</p>
 <ul>
 <li>Hosted orchestration and execution, with isolated attempts and explicit artifact publication.</li>
@@ -102,8 +168,7 @@
 </ul>
 <p>Customers should spend time refining their development process rather than repeatedly gluing infrastructure components together. The platform must preserve the team&#39;s ability to inspect, export, customize, and version that process.</p>
 <p>Managed operations and quick setup support the value proposition. The central offering remains a system for rigorous, measurable agentic development.</p>
-</section>
-<section class="slide" id="slide-5" aria-label="The improvement cycle"><div class="slide-number">05 / 15</div><h2>The improvement cycle</h2>
+<h2>The improvement cycle</h2>
 <ol>
 <li><strong>Define.</strong> Start from a maintained package and customize its workflows, agents, skills, tools, checks, approvals, and acceptance criteria.</li>
 <li><strong>Execute.</strong> Pin the selected configuration and record attempts, decisions, failures, artifacts, and available resource usage.</li>
@@ -111,7 +176,7 @@
 <li><strong>Compare.</strong> Evaluate a candidate configuration against the baseline under comparable conditions, retaining failures and uncertainty.</li>
 <li><strong>Revise.</strong> Adopt or reject the candidate, preserve its rationale and evidence, and continue observing real work.</li>
 </ol>
-<p>Templates describe the intended process; execution records show what actually happened; evals connect a configuration to its outcomes and inputs. Without all three, an apparent improvement may reflect a model change, extra human effort, different task difficulty, or luck.</p>
+<p>ACL packages describe the intended process; execution records show what actually happened; evals connect a configuration to its outcomes and inputs. Without all three, an apparent improvement may reflect a model change, extra human effort, different task difficulty, or luck.</p>
 <h3>Imagined product screens</h3>
 <p>All task details, timings, costs, and evaluation scores below are illustrative. These are proposed interfaces, not product performance evidence.</p>
 <p><strong>Start with a reusable process and make it your team&#39;s.</strong> The workflow includes skills, tools, checks, and approval policy.</p>
@@ -122,8 +187,7 @@
 <p><img src="images/03-review-results-v3.png" alt="Accept the exact reviewed revision with its execution report"></p>
 <p><strong>Evaluate changes to the development system.</strong> Compare versions on the same cases and rubric before adopting a new standard.</p>
 <p><img src="images/04-workflow-evaluation.png" alt="Compare workflow versions using outcomes and resource inputs"></p>
-</section>
-<section class="slide" id="slide-6" aria-label="Measure outcomes against resource inputs"><div class="slide-number">06 / 15</div><h2>Measure outcomes against resource inputs</h2>
+<h2>Measure outcomes against resource inputs</h2>
 <p>The unit of analysis is a task or evaluation case executed under a particular workflow version. Stage and attempt records explain the aggregate result.</p>
 <table>
 <thead>
@@ -169,14 +233,12 @@
 <p>A team&#39;s target is useful accepted work at an appropriate quality bar and resource cost. A lower token count alone is not an improvement, and dollar savings are not equivalent to token savings across differently priced models. Declare which outcome and resource dimensions matter before comparing versions.</p>
 <p>Keep the raw evidence behind every summary. Record the workflow version/hash, case and starting revision, instructions, model identifiers, runtime dependencies, rubric, and scorer. Unknown usage remains unknown. Repeated updates, retries, and worker restarts must not double-count consumption.</p>
 <p>The task report evolves during execution, preserving failures and rework. Analysis may reveal repeated findings, expensive stages, unnecessary context, or a weak completion check. Teams use those observations to design and evaluate changes; automatic recommendations must remain evidence-linked and distinguish inference from observation.</p>
-</section>
-<section class="slide" id="slide-7" aria-label="A library that reduces reinvention"><div class="slide-number">07 / 15</div><h2>A library that reduces reinvention</h2>
+<h2>A library that reduces reinvention</h2>
 <p>A workflow package includes stages, instructions, skills, tool/MCP requirements, checks, routing, expected artifacts, compatible dependencies, and evaluation cases. It provides a maintained starting point with an explicit completion boundary.</p>
 <p>Initial packages should cover bounded bug fixes and small feature changes for Go business applications and web services. Later packages can cover dependency upgrades, API changes, test improvements, and bounded refactoring.</p>
 <p>Teams can configure a supplied package, fork it, or create their own. Shared primitives let them reuse a review stage, lint policy, or skill without reconstructing the whole system. Package changes are versioned and evaluated; adopting an update must not silently alter active tasks.</p>
 <p>The library should grow through documented compatibility, observed failure modes, and evaluation evidence. A template gallery without maintenance or measurement does not establish an effective development process. Sharing requires separating portable definitions from project-specific credentials, private context, and artifacts.</p>
-</section>
-<section class="slide" id="slide-8" aria-label="Architecture: Kubernetes for agentic workflows"><div class="slide-number">08 / 15</div><h2>Architecture: Kubernetes for agentic workflows</h2>
+<h2>Architecture: Kubernetes for agentic workflows</h2>
 <p>The analogy describes a high-level, declarative contract over execution machinery. Teams define and version what should run, while the system resolves configuration, executes work, and records what happened.</p>
 <p>ACL makes the process an authored program rather than a collection of generated manifests:</p>
 <ul>
@@ -189,8 +251,7 @@
 <p>A package can declare multiple workflows; its entrypoint selects the workflow for a compiled artifact. <code>wctl compile</code> resolves references, validates contracts, and captures declared assets in self-contained JSON. <code>wctl exec</code> consumes that artifact. Compilation does not start runtime services or call model providers. Each task retains its resolved execution definition, supporting review of configuration changes and comparison of outcomes. See the <a href="https://github.com/jasondeutsch/watts/blob/watts2/docs/language-spec.md">ACL language specification</a>.</p>
 <p>The current core supports ACL compilation and local module composition, pinned local execution definitions, Temporal orchestration, and local Docker workloads. Distributed scheduling, durable artifact transfer, and hardened isolation remain open work. Temporal retains workflow orchestration; Kubernetes is a possible future execution backend. See <a href="https://github.com/jasondeutsch/watts/blob/main/docs/container-workloads.md">container workloads</a> and <a href="https://github.com/jasondeutsch/watts/blob/main/docs/package-runtime-layout.md">package/runtime separation</a>.</p>
 <p>The analogy should clarify ownership rather than dictate infrastructure scope. Customers should not need to operate Kubernetes or Temporal. Source-host publication is an adapter; Git is not a Watts core dependency.</p>
-</section>
-<section class="slide" id="slide-9" aria-label="Why Watts alongside Claude Code or Cursor?"><div class="slide-number">09 / 15</div><h2>Why Watts alongside Claude Code or Cursor?</h2>
+<h2>Why Watts alongside Claude Code or Cursor?</h2>
 <p>Claude Code provides skills, hooks, tools, subagents, and an Agent SDK. Cursor provides cloud agents and scheduled/event-driven automations. These products already support substantial automation. Feature context checked 2026-10-11: <a href="https://code.claude.com/docs/en/overview">Claude Code</a>, <a href="https://cursor.com/docs/cloud-agent">Cursor Cloud Agents</a>, <a href="https://cursor.com/docs/cloud-agent/automations">Cursor Automations</a>.</p>
 <p>The problem Watts addresses is how an organization engineers and improves its use of agents. In the ad hoc pattern, the individual chooses the workflow and the organization lacks a comparable record of process, outcomes, and resource inputs. Watts makes the team process explicit, versionable, reusable, and measurable.</p>
 <table>
@@ -228,8 +289,7 @@
 <p>A team can build a disciplined system with existing tools, scripts, CI, and observability. Watts must offer a useful abstraction and less integration work, not claim that other products cannot support rigor. Teams already satisfied with their process may have no reason to adopt it.</p>
 <p>The target contract should support preferred coding tools as executors or coordinators. Claude Code and Cursor adapters are potential integrations, not existing Watts capabilities. The platform should preserve agent choice as supported adapters become available.</p>
 <p>Temporal, Langfuse, LangSmith, and execution infrastructure can supply components. Watts&#39; proposition is the coherent workflow abstraction and improvement cycle, with the platform managing the component assembly. Integration alone is insufficient if the resulting process remains opaque or hard to evaluate.</p>
-</section>
-<section class="slide" id="slide-10" aria-label="A reasonable MVP"><div class="slide-number">10 / 15</div><h2>A reasonable MVP</h2>
+<h2>A reasonable MVP</h2>
 <p><strong>A managed environment in which a team can define a Go development workflow, run it, measure its outcomes and inputs, and evaluate a revised version.</strong></p>
 <p>Start with one supported Go service profile, one agent adapter, and two workflow packages: bounded bug repair and small feature implementation. The <a href="https://github.com/jasondeutsch/watts/blob/main/resources/examples/coder_golang/README.md">Golang coder example</a> is a seed, not evidence of cloud readiness.</p>
 <p>The minimum usable product includes:</p>
@@ -246,8 +306,7 @@
 <p>An elaborate visual workflow editor or analytics suite is unnecessary. Files, clear task views, trustworthy records, and simple comparative reports are enough to test the proposition. Metrics and evaluation belong in the initial learning cycle; they cannot all be postponed while the product sells only agent hosting.</p>
 <p>Defer multiple languages, broad executor support, a marketplace, automatic optimization, customer-operated clusters, dedicated enterprise deployments, and a large connector catalog. A customer should not need to learn Temporal or manage workers to use the hosted product.</p>
 <p>MVP acceptance: a team can run a baseline workflow, change it, rerun declared cases, and inspect differences in outcomes and resource consumption. Failures remain in the comparison. The team can explain what changed, decide which version to adopt, and reproduce the setup without hidden operator work. A favorable comparison is not required; revealing that a change made things worse is useful functionality.</p>
-</section>
-<section class="slide" id="slide-11" aria-label="Benefits to the enterprise"><div class="slide-number">11 / 15</div><h2>Benefits to the enterprise</h2>
+<h2>Benefits to the enterprise</h2>
 <p>The enterprise value is a visible, governable process for agent work across teams. These are proposed benefits and engineering obligations, not claims that the prototype already provides enterprise controls or certified compliance.</p>
 <table>
 <thead>
@@ -300,14 +359,97 @@
 </tbody></table>
 <p>A practical management question is: <strong>Which approved process produced this change, who authorized it, what did it consume, and what evidence supports accepting it?</strong> Watts should make that answer available without reconstructing several disconnected systems.</p>
 <p>Capabilities should be phased. The hosted MVP needs tenant isolation, scoped credentials, attributable decisions, usable evidence, and honest usage reporting. Enterprise procurement may additionally require SSO, fine-grained roles, protected audit retention, residency options, incident response commitments, and external assurance. Those are substantial product and operating commitments; none should be implied by calling the platform “enterprise-ready.”</p>
-<p>Current evidence sets a clear limit: the <a href="https://github.com/jasondeutsch/watts/blob/main/evals/go-workflow/runs/2026-10-10-tic-tac-toe/README.md">local Go eval</a> produced a verified game but exposed missing build/review token accounting, interrupted executor recovery problems, mixed worker versions, and a review metadata false positive. It demonstrates useful failure evidence and work still required, not reliable end-to-end delivery or quantified savings.</p>
-</section>
-<section class="slide" id="slide-12" aria-label="What businesses might pay for"><div class="slide-number">12 / 15</div><h2>What businesses might pay for</h2>
-<p>The buyer is an engineering leader or owner of a software delivery function who wants a rigorous, maintainable agent development system. Smaller teams and non-technology companies with limited platform engineering capacity are plausible early customers; they still need a technical owner and meaningful acceptance criteria.</p>
-<p>Paid value is maintained workflow packages plus managed execution and the evidence/control layer described above. Enterprises may value accountability and governance even before efficiency gains are proven, but willingness to pay and procurement requirements must be tested. Smaller customers may prefer a simpler offer; do not force every buyer through enterprise machinery.</p>
-<p>A subscription could cover workflow/version management, collaboration, reporting, evaluations, retention, and support, with understandable execution and model charges. Validate packaging and willingness to pay through pilots rather than assuming demand for another dashboard. Track support and onboarding costs separately from execution costs.</p>
-</section>
-<section class="slide" id="slide-13" aria-label="Critical assessment and validation"><div class="slide-number">13 / 15</div><h2>Critical assessment and validation</h2>
+<p>Current evidence sets a clear limit: the <strong>CSS refinement eval (2026-10-13)</strong> passed independent acceptance checks in a supervised run, with one planning rejection and about 22 minutes elapsed. It reported 1,945,192 input-plus-output tokens, including cached input; billed cost was unavailable. Useful live progress required private runtime inspection, and the task report had broken approval-evidence links. Evidence is retained in the separately maintained eval archive. This establishes a successful supervised case and concrete product gaps, not unattended reliability, cloud readiness, or quantified savings. Project configuration and independent eval checks are normal setup/verification work; the visibility and reporting gaps are Watts obligations.</p>
+<h2>Business model: open adoption, paid operations</h2>
+<p><strong>Make Watts useful to adopt independently; sell the operation, organizational controls, and support around it.</strong></p>
+<p>HashiCorp is a useful precedent for this commercial structure. HCP Terraform sells hosted workflow management with paid governance and support capabilities; Terraform Enterprise offers the application in a customer-operated environment. See <a href="https://developer.hashicorp.com/terraform/cloud-docs/overview">HCP Terraform plans</a> and <a href="https://developer.hashicorp.com/terraform/enterprise">Terraform Enterprise</a>. This is a model to adapt, not evidence that Watts has equivalent demand or maturity.</p>
+<table>
+<thead>
+<tr>
+<th>Proposed offering</th>
+<th>Customer need</th>
+<th>Commercial basis</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Watts Core</strong></td>
+<td>Author ACL packages, compose modules, execute workflows, inspect evidence, and evaluate locally</td>
+<td>Free, MPL 2.0; adoption and contribution path</td>
+</tr>
+<tr>
+<td><strong>Watts Cloud</strong></td>
+<td>Run team workflows without maintaining orchestration, workers, upgrades, or evidence storage</td>
+<td>Organization subscription plus clearly metered hosted execution and storage</td>
+</tr>
+<tr>
+<td><strong>Watts Enterprise</strong></td>
+<td>Apply organization-wide identity, authorization, workflow policy, audit retention, and operational controls</td>
+<td>Annual software subscription; cloud enterprise tier first, customer-operated/private deployment later if demand supports it</td>
+</tr>
+<tr>
+<td><strong>Support and enablement</strong></td>
+<td>Obtain supported releases, incident assistance, compatibility guidance, and help establishing a workflow/eval</td>
+<td>Support subscription and separately scoped onboarding or training</td>
+</tr>
+</tbody></table>
+<p>These are proposed product boundaries, not available commercial editions. Core should remain a useful execution and authoring system: the language, local module composition, custom adapters, basic diagnostic evidence, and portable definitions are not a deliberately incomplete trial. Paid value comes from reducing operational work and providing verified organizational capabilities.</p>
+<p>Minimum hosted safety, credential isolation, and truthful diagnostics belong in every paid cloud plan. Advanced controls can justify an enterprise tier; basic safety must not be an upgrade. Support response commitments address the platform, not a guarantee that generated application code is correct.</p>
+<h2>Adoption and expansion</h2>
+<p>The initial user is a developer or technical owner who wants a repeatable process. The likely buyer is an engineering leader or software-delivery owner accountable for operating that process across a team. Smaller organizations and non-technology companies are plausible early cloud customers when they lack platform engineering capacity; they still need useful acceptance criteria and a technical owner.</p>
+<ol>
+<li><strong>Adopt the core.</strong> Run a small workflow, inspect its source and evidence, and adapt a maintained example.</li>
+<li><strong>Establish a team process.</strong> Reuse packages, define verification and approval policy, and evaluate changes against a baseline.</li>
+<li><strong>Buy managed operation.</strong> Move to Cloud when maintaining the execution and evidence infrastructure costs more effort than the subscription saves.</li>
+<li><strong>Expand organizational control.</strong> Buy Enterprise when multiple teams need centrally enforced policy, identity integration, protected records, or defined operating commitments.</li>
+<li><strong>Add support where needed.</strong> Pay for release compatibility, incident response, and bounded enablement rather than bespoke intervention on every task.</li>
+</ol>
+<p>Expansion should follow adoption of a useful process, not raw token volume. Usage-based model revenue would reward consumption even when a workflow becomes less efficient; platform value should remain tied to operations, control, and demonstrable customer outcomes.</p>
+<p>The ecosystem can grow around reusable ACL modules, maintained workflow packages, Agent images, MCP integrations, and evaluation cases. Start by integrating established providers, identity systems, secret managers, and observability tools. Paid validated packages or partner services are later opportunities, not a reason to build a competing secrets or telemetry product. A marketplace is outside the MVP.</p>
+<h2>Packaging, pricing, and unit economics</h2>
+<p><strong>Proposed pricing hypothesis: an organization subscription for the platform, transparent charges for resources consumed, and contracted enterprise/support terms.</strong> No prices or revenue forecast are established yet.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Proposed unit</th>
+<th>What customers should understand</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Team platform</td>
+<td>Organization subscription with stated collaboration, concurrency, and retention allowances</td>
+<td>What is included, which limits apply, and the cost of an additional team or capacity</td>
+</tr>
+<tr>
+<td>Hosted execution</td>
+<td>Published compute/time units, including failed and retried attempts</td>
+<td>Which work consumed resources and why; configurable limits, with stated enforcement boundaries</td>
+</tr>
+<tr>
+<td>Evidence storage</td>
+<td>Included retention/storage allowance plus explicit overage</td>
+<td>Storage, export, deletion, and backup behavior; no surprise requirement to retain everything indefinitely</td>
+</tr>
+<tr>
+<td>Model usage</td>
+<td>BYO provider keys initially; optional managed gateway only with explicit billing terms</td>
+<td>Provider charges are separate from Watts fees; cached tokens, estimates, and actual charges are distinguishable</td>
+</tr>
+<tr>
+<td>Enterprise and support</td>
+<td>Annual organization/deployment contract and defined support scope</td>
+<td>Enforced controls, deployment responsibilities, supported versions, and response commitments</td>
+</tr>
+</tbody></table>
+<p>BYO keys let customers retain provider choice and billing relationships. They do not make inference free or prevent data from reaching providers. If Watts later resells model access, the margin and billing responsibility must be explicit rather than hidden in a task price.</p>
+<p>Measure contribution margin after compute, storage, telemetry, support, and onboarding costs. Also measure paid conversion, renewal, repeated team use, and accepted outcomes. Separate subscription revenue, resource revenue, and services revenue so a profitable consulting engagement is not mistaken for repeatable platform economics.</p>
+<p>Begin with bounded paid pilots of managed Cloud and scoped onboarding. Defer broad on-premises support until enough customers justify its release, recovery, security, and support burden. Avoid a price per successful task until acceptance is consistently defined and verification effort is understood; avoid pricing primarily by tokens when efficiency is part of the promise.</p>
+<h2>Licensing and the commercial boundary</h2>
+<p>The business pattern and the license are separate decisions. HashiCorp announced its move from MPL 2.0 to BSL 1.1 for future product releases on August 10, 2023. Its announcement describes a source-available license with commercial-use conditions aimed at competing offerings. See <a href="https://www.hashicorp.com/en/blog/hashicorp-adopts-business-source-license">the license announcement</a> and <a href="https://www.hashicorp.com/en/license-faq">licensing FAQ</a>. BSL is not an open-source license; a BSL product should not be marketed as one.</p>
+<p><strong>Watts currently remains MPL 2.0. This pitch does not propose or enact a license change.</strong> MPL is an open-source license with file-level copyleft, rather than a permissive license. It permits commercial use and does not itself reserve competitive hosting to the original vendor. See <a href="https://www.mozilla.org/en-US/MPL/2.0/FAQ/">Mozilla&#39;s MPL FAQ</a> and <a href="https://github.com/jasondeutsch/watts/blob/main/LICENSE">the Watts license</a>.</p>
+<p>Under the proposed current-license model, customers pay for managed service, enterprise management software, and support; they retain access to an independently useful core and portable definitions. Commercial packaging of any additional software must respect the licenses of the code it includes. A future source-available restriction would be a separate decision with adoption, ecosystem, contribution, and customer-trust tradeoffs—not an assumed prerequisite for revenue.</p>
+<p>The commercial advantage to validate is operating competence: reliable execution, maintained compatibility, credible evidence, useful organizational controls, and support. An open language alone does not establish a business, and a restrictive license alone does not establish customer value.</p>
+<h2>Critical assessment and validation</h2>
 <p>The idea is credible if teams can use the abstractions to build a measurable development system with less reinvention and integration work. Positive efficiency gains are an empirical question. Auditability makes experiments assessable; it does not make a poor workflow effective.</p>
 <p>The principal risks:</p>
 <ul>
@@ -321,16 +463,14 @@
 </ul>
 <p>Recruit a small set of teams with recurring work and a technical owner. Establish their actual Claude Code/Cursor-plus-CI baseline, include unsuccessful tasks, and record setup effort, review burden, accepted quality, tokens, spend, and elapsed time. Have them make and evaluate workflow changes rather than merely watch a hosted agent run.</p>
 <p>Look for repeat use, understandable evidence, reuse of definitions, changes informed by comparisons, and willingness to pay for the managed system. Evaluate efficiency at the team&#39;s declared quality bar. Do not substitute prompt volume, generated code, or an isolated successful demo for improved delivery.</p>
-<p>Narrow or stop if customers only want a hosted terminal, cannot connect resource inputs to outcomes, never use the iteration loop, or achieve the same useful process with simpler existing tooling. Payment and renewal must eventually support the cost of infrastructure, library maintenance, and support.</p>
-</section>
-<section class="slide" id="slide-14" aria-label="Evidence notes"><div class="slide-number">14 / 15</div><h2>Evidence notes</h2>
+<p>Narrow or stop if customers only want a hosted terminal, cannot connect resource inputs to outcomes, never use the iteration loop, or achieve the same useful process with simpler existing tooling. Validate that paid operations and controls provide enough value beyond self-managed Core. Payment and renewal must eventually support infrastructure, library maintenance, sales, and support costs; dependence on repeated manual operator rescue is not a scalable platform.</p>
+<h2>Evidence notes</h2>
 <p>The research supports investigating workflow quality and measurable organizational outcomes, not a universal claim that AI engineering fails. DORA&#39;s March 2026 analysis describes verification overhead, a workflow gap, and the importance of measuring impact rather than generated output; it also reports positive individual productivity perceptions and an association with higher throughput. These mixed findings motivate disciplined measurement. <a href="https://dora.dev/insights/balancing-ai-tensions/">DORA: Balancing AI tensions</a>.</p>
 <p>METR&#39;s early-2025 experiment found a slowdown in a particular experienced open-source developer setting. Its February 2026 update describes selection and measurement difficulties in the follow-up study. Treat those findings as scoped evidence that outcomes and perceptions can diverge, not a current universal estimate for companies, tools, or Watts. <a href="https://metr.org/blog/2026-02-24-uplift-update/">METR: experiment design update</a>.</p>
 <p>The specific prevalence of ad hoc workflow use, the scale of the organizational efficiency gap, and willingness to adopt Watts remain customer-research questions. An “overwhelming majority” claim needs a defined company population and meaningful-outcome measure before being presented as a statistic. A lack of measured improvement is also different from evidence of no improvement.</p>
-</section>
-<section class="slide" id="slide-15" aria-label="The decision"><div class="slide-number">15 / 15</div><h2>The decision</h2>
-<p>Build the smallest managed system that lets a team define a process, run it reliably, and evaluate a revision. Expand enterprise controls as validated customer requirements, with enforcement and evidence behind each promise.</p>
+<h2>The decision</h2>
+<p>Build the smallest managed system that lets a team define a process, run it reliably, and evaluate a revision. Use an independently useful MPL-licensed core to support adoption; validate paid Cloud and scoped support through pilots. Expand enterprise controls and deployment options as validated customer requirements, with enforcement and evidence behind each promise.</p>
 <p><strong>Teams should be able to build, maintain, and improve their agentic software development system over time—and show what each change achieved.</strong></p>
-</section>
+</div></details>
 </main><footer class="footer"><a href="../">Watts project website</a><span>Platform proposal · Open-source core 0.1.0</span><a href="#slides">Back to top ↑</a></footer>
 </body></html>
