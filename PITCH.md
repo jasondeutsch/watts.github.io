@@ -10,7 +10,7 @@ Watts Platform makes that system easy to adopt and operate. It manages the infra
 
 The central promise is a disciplined improvement cycle: **define → execute → measure → compare → revise**. Cost efficiency, token efficiency, quality, predictability, and human effort become properties the team can investigate and improve. Gains must be demonstrated through comparable outcomes and resource inputs.
 
-Status: product hypothesis, reviewed 2026-10-12. Watts is a 0.1.0 proof of concept with typed YAML resources, values-driven templates, pinned local execution definitions, Temporal orchestration, and local Docker workload execution. Complete usage accounting, distributed execution packages, hardened sandboxing, and the managed platform remain open work. Pi/Ralph is an example workload image; local container execution does not establish hardened multi-tenant isolation. The images below are product concepts. See [current architecture](../watts/docs/workflow-design.md) and [proposed stage communication](../watts/docs/stage-communication.md).
+Status: product hypothesis, reviewed 2026-10-13. Watts is a 0.1.0 proof of concept with ACL declarations, typed variables, local modules, pinned local execution definitions, Temporal orchestration, and local Docker workload execution. Complete usage accounting, distributed execution packages, hardened sandboxing, and the managed platform remain open work. Pi/Ralph is an example workload image; local container execution does not establish hardened multi-tenant isolation. The images below are product concepts. See [current architecture](../watts/docs/workflow-design.md) and [proposed stage communication](../watts/docs/stage-communication.md).
 
 ## The problem: adoption without engineering rigor
 
@@ -33,7 +33,7 @@ The gap is the ability to engineer, maintain, and improve the development system
 
 | Primitive or abstraction | What the team can do |
 | --- | --- |
-| Versioned workflow manifests | Define the process explicitly, track changes, and pin the definition used by a task |
+| Versioned ACL workflow definitions | Define the process explicitly, track changes, and pin the definition used by a task |
 | Procedures and execution contracts | Declare inputs, outputs, tools, checks, permissions, limits, and acceptance evidence |
 | Agents and reusable resources | Compose instructions, skills, model settings, and MCP tools without rebuilding the surrounding lifecycle |
 | Routing and rework | Make review-to-build loops, human decisions, failure handling, and retry boundaries explicit |
@@ -128,16 +128,17 @@ The library should grow through documented compatibility, observed failure modes
 
 The analogy describes a high-level, declarative contract over execution machinery. Teams define and version what should run, while the system resolves configuration, executes work, and records what happened.
 
-The resource model separates responsibilities:
+ACL makes the process an authored program rather than a collection of generated manifests:
 
-- **Workflow:** connects work, binds inputs, and owns routing, approval policy, and overall limits.
-- **Procedure:** defines model-free work such as commands and checks; approval/event waits remain orchestration states.
-- **Agent:** specializes executable work with a model, runtime, identity, instructions, skills, and tools.
-- **ConfigMap and Secret:** supply scoped configuration and credential references.
+- **Workflow declarations** connect executors, name artifact dependencies, and define bounded outcome routes.
+- **Procedure declarations** define deterministic container work or approval/event waits.
+- **Agent declarations** add model configuration, identity, instructions, skills, tools, and completion gates.
+- **MCP, ConfigMap, and Secret declarations** define service connections, nonsecret defaults, and credential-source references.
+- **Typed variables and local modules** customize and reuse those definitions without copying them between projects.
 
-A Watts package groups these resources; the proposed package model supports multiple named Workflows without an additional grouping Kind. Values-driven templates make the package customizable. An isolated workload is the proposed basic execution primitive for Agent and executable Procedure attempts; Pi and its Ralph tool run inside that boundary. Resource definitions, running instances, and execution evidence remain distinct.
+A package can declare multiple workflows; its entrypoint selects the workflow for a compiled artifact. `wctl compile` resolves references, validates contracts, and captures declared assets in self-contained JSON. `wctl exec` consumes that artifact. Compilation does not start runtime services or call model providers. Each task retains its resolved execution definition, supporting review of configuration changes and comparison of outcomes. See the [ACL language specification](https://github.com/jasondeutsch/watts/blob/watts2/docs/language-spec.md).
 
-The current core implements typed YAML resources, package templating/composition, pinned local definitions, and Temporal execution. The distributed target adds self-contained packages, isolated workspaces, explicit revision publication, and durable artifact transfer. Temporal retains workflow orchestration; a local container backend or Kubernetes can supply execution capacity. See [container workloads](../watts/docs/container-workloads.md) and [package/runtime separation](../watts/docs/package-runtime-layout.md).
+The current core supports ACL compilation and local module composition, pinned local execution definitions, Temporal orchestration, and local Docker workloads. Distributed scheduling, durable artifact transfer, and hardened isolation remain open work. Temporal retains workflow orchestration; Kubernetes is a possible future execution backend. See [container workloads](../watts/docs/container-workloads.md) and [package/runtime separation](../watts/docs/package-runtime-layout.md).
 
 The analogy should clarify ownership rather than dictate infrastructure scope. Customers should not need to operate Kubernetes or Temporal. Source-host publication is an adapter; Git is not a Watts core dependency.
 
@@ -152,7 +153,7 @@ The problem Watts addresses is how an organization engineers and improves its us
 | Which process produced this result? | A pinned workflow version and a trace of stages, attempts, decisions, and artifacts |
 | What resources did the result consume? | Attributable metrics covering successful work, failures, and rework |
 | Did a workflow change improve efficiency? | Comparable evaluations of quality and resource inputs, retaining earlier versions |
-| Can another engineer reproduce the process? | Shareable manifests, reusable resources, and declared execution conditions |
+| Can another engineer reproduce the process? | Shareable ACL packages, reusable modules, and declared execution conditions |
 | How do we stop every engineer starting from scratch? | Maintained workflow packages and reusable team building blocks |
 | Who assembles and operates the underlying system? | Watts Platform supplies managed execution, storage, instrumentation, and evaluation operations |
 
@@ -166,7 +167,7 @@ Temporal, Langfuse, LangSmith, and execution infrastructure can supply component
 
 **A managed environment in which a team can define a Go development workflow, run it, measure its outcomes and inputs, and evaluate a revised version.**
 
-Start with one supported Go service profile, one agent adapter, and two workflow packages: bounded bug repair and small feature implementation. The [Go generalist example](../watts/resources/examples/go_generalist/README.md) is a seed, not evidence of cloud readiness.
+Start with one supported Go service profile, one agent adapter, and two workflow packages: bounded bug repair and small feature implementation. The [Golang coder example](../watts/resources/examples/coder_golang/README.md) is a seed, not evidence of cloud readiness.
 
 The minimum usable product includes:
 
@@ -195,7 +196,7 @@ The enterprise value is a visible, governable process for agent work across team
 | Spend accountability | Usage and charges attributed to team, project, task, model, and attempt, including failures and rework; budgets and reconciliation with provider billing | Estimates and actual charges differ. Subscriptions, shared infrastructure, and unreported usage complicate allocation. Budget enforcement can have in-flight overshoot and must state its limits. |
 | Safety and containment | Isolated workloads, restricted filesystem/network access, scoped credentials, resource limits, cancellation, and explicit publication authority | Prompt guardrails are not a sandbox. Containers require deliberate permissions and do not guarantee safe code, prevent every escape, or remove human accountability. |
 | Auditability | Pinned definitions and input identities, attributable decisions, exact reviewed revisions, and retained verification/publication evidence | Ordinary logs are not tamper-evident audit records. Define integrity protection, access, retention, export, and deletion before making stronger claims. Model reasoning and every internal decision may not be observable. |
-| Governance | Approved workflow versions, supported runtime/model policies, role-based approval authority, controlled exceptions, and a record of policy changes | A policy in a manifest is only a declaration until enforced. Changes and overrides require attributable authority; governance must not become a rubber-stamp approval process. |
+| Governance | Approved workflow versions, supported runtime/model policies, role-based approval authority, controlled exceptions, and a record of policy changes | A policy in a workflow definition is only a declaration until enforced. Changes and overrides require attributable authority; governance must not become a rubber-stamp approval process. |
 | Data and credential control | Scoped delivery, tenant boundaries, evidence access controls, redaction, and explicit retention/provider policies | BYO keys do not prevent data from reaching a model provider. Residency, provider terms, backups, and sensitive transcript storage require separate decisions and verification. |
 | Organizational learning | Reusable team processes and comparable evals tied to workflow revisions, accepted quality, resource use, and interventions | Comparisons depend on representative cases and consistent scoring. Metrics do not establish causality or justify ranking individual engineers by tokens or output volume. |
 | Operational accountability | Clear ownership of failed work, compatible runtime versions, recovery procedures, and exportable definitions/evidence | Managed operations transfer infrastructure work, not responsibility for acceptance criteria or the correctness of published software. Availability and portability promises require tested recovery and export paths. |
@@ -221,7 +222,7 @@ The idea is credible if teams can use the abstractions to build a measurable dev
 The principal risks:
 
 - More stages and agents can increase token consumption, latency, and human review without improving quality.
-- Versioned manifests cannot make models deterministic or compensate for inadequate context and acceptance criteria.
+- Versioned definitions cannot make models deterministic or compensate for inadequate context and acceptance criteria.
 - Incomplete usage attribution or inconsistent scoring can produce misleading efficiency comparisons.
 - Teams may collect metrics without making disciplined changes or may find simpler automation sufficient.
 - Coding tool vendors and observability platforms can expand into workflow management and evaluation.

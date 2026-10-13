@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
-<meta name="description" content="Watts defines and executes agentic software workflows using declarative manifests, explicit checks, and retained execution evidence.">
+<meta name="description" content="Watts defines and executes agentic software workflows with explicit checks, review, and retained execution evidence. ACL provides reusable, versioned workflow definitions.">
 <title>Watts — Declarative software workflows</title>
 <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="./assets/style.css">
@@ -11,12 +11,12 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="header"><a class="brand" href="#" aria-label="Watts home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 8h6l4 16 4-16h5l-4 16h-6L9 8M23 8h5l-4 16"/></svg>watts<span class="brand-dot">.</span></a><nav aria-label="Main navigation"><a href="#problems">Purpose</a><a href="#system">Execution</a><a href="#evidence">Evaluation</a></nav><a class="nav-source" href="https://github.com/jasondeutsch/watts">GitHub <span aria-hidden="true">↗</span></a></header>
+<header class="header"><a class="brand" href="#" aria-label="Watts home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 8h6l4 16 4-16h5l-4 16h-6L9 8M23 8h5l-4 16"/></svg>watts<span class="brand-dot">.</span></a><nav aria-label="Main navigation"><a href="#problems">Purpose</a><a href="#system">Execution</a><a href="#language">Language</a><a href="#evidence">Evaluation</a></nav><a class="nav-source" href="https://github.com/jasondeutsch/watts">GitHub <span aria-hidden="true">↗</span></a></header>
 <main id="main">
 <section class="hero section">
 <div class="eyebrow"> Declarative agentic software workflows</div>
-<h1>A defined process for<br>agentic software development.</h1>
-<div class="hero-bottom"><p>Agent sessions are difficult to assess when instructions, checks, and review vary from task to task. Watts makes those choices explicit, retains execution evidence, and gives teams a process they can evaluate and revise.</p><div class="hero-actions"><a class="button primary" href="#system">Execution model <span aria-hidden="true">↓</span></a><a class="text-link" href="https://github.com/jasondeutsch/watts">Source & documentation ↗</a></div></div>
+<h1>Watts makes agentic<br>development a defined process.</h1>
+<div class="hero-bottom"><p>Watts gives teams a repeatable workflow for agentic software development: explicit instructions, tools, checks, and review, with a record of what ran and what happened. Use that evidence to diagnose failures, assess resource use, and improve the process over time.</p><div class="hero-actions"><a class="button primary" href="#system">Explore Watts <span aria-hidden="true">↓</span></a><a class="text-link" href="https://github.com/jasondeutsch/watts">Source & documentation ↗</a></div></div>
 <div class="hero-rule"><span>Define → execute → measure → compare → revise</span><span>Open source · Prototype 0.1.0</span></div>
 </section>
 <section class="problems section" id="problems">
@@ -32,7 +32,7 @@
 <section class="system section" id="system">
 <div class="section-top"><div><div class="eyebrow">The execution model</div><h2>Execution with<br>explicit contracts.</h2></div><p>Each workflow declares its inputs, execution stages, checks, approval points, and routing. Review findings can return work to an earlier stage.</p></div>
 <div class="console">
-<div class="console-bar"><span><span class="status-dot"></span> go-generalist / cancellation-fix</span><span class="concept">Illustrative execution</span></div>
+<div class="console-bar"><span><span class="status-dot"></span> coder-golang / cancellation-fix</span><span class="concept">Illustrative execution</span></div>
 <div class="console-content"><div class="graph" aria-label="Example workflow: specification, human approval, planning, human approval, build, and review. Review can return findings to build.">
 <div class="graph-heading"><span>Workflow / team-go</span><span>Configuration pinned</span></div>
 <div class="flow"><div class="node complete"><span class="node-type">Agent</span><strong>Specification</strong><small>Scope & acceptance</small></div><span class="connector" aria-hidden="true">→</span><div class="node approval"><span class="node-type">Decision</span><strong>Spec approval</strong><small>Human authority</small></div><span class="connector" aria-hidden="true">→</span><div class="node complete"><span class="node-type">Agent</span><strong>Planning</strong><small>Work & verification</small></div><span class="connector" aria-hidden="true">→</span><div class="node approval"><span class="node-type">Decision</span><strong>Plan approval</strong><small>Human authority</small></div><span class="connector" aria-hidden="true">→</span><div class="node active"><span class="node-type">Agent</span><strong>Build</strong><small>Tools + required gates</small></div><span class="connector" aria-hidden="true">→</span><div class="node"><span class="node-type">Agent</span><strong>Review</strong><small>Verdict & findings</small></div></div>
@@ -40,32 +40,43 @@
 </div>
 <aside class="execution-details"><div class="eyebrow">Execution contract</div><h3>Attempt inputs<br>and outputs</h3><dl><div><dt>Inputs</dt><dd>Pinned configuration<br>Declared context</dd></div><div><dt>Execution</dt><dd>Container workload<br>Scoped tool access</dd></div><div><dt>Acceptance</dt><dd>Required quality gates<br>Review & decisions</dd></div><div><dt>Evidence</dt><dd>Logs, receipts, findings<br>Published artifacts</dd></div></dl><span class="detail-footer">Evidence retained per attempt</span></aside></div>
 </div>
-<div class="principles"><article><span>01</span><h3>Configuration</h3><p>Packages and values-driven templates define reusable workflows. Teams review and version changes to agents, instructions, tools, and policy.</p></article><article><span>02</span><h3>Orchestration</h3><p>Temporal holds durable workflow state. Workers execute declared workloads and retain attempt evidence.</p></article><article><span>03</span><h3>Evaluation</h3><p>Compare configurations on the same cases and acceptance criteria. Include failures and rework when assessing results and resource use.</p></article></div>
+<div class="principles"><article><span>01</span><h3>Configuration</h3><p>ACL packages, typed variables, and local modules define reusable workflows. Teams review and version changes to agents, instructions, tools, and policy.</p></article><article><span>02</span><h3>Orchestration</h3><p>Temporal holds durable workflow state. Workers execute declared workloads and retain attempt evidence.</p></article><article><span>03</span><h3>Evaluation</h3><p>Compare configurations on the same cases and acceptance criteria. Include failures and rework when assessing results and resource use.</p></article></div>
 </section>
-<section class="manifest-section section" id="primitives"><div class="manifest-intro"><div class="eyebrow">Resource model</div><h2>Configuration<br>through manifests.</h2><p>Workflow resources define routing. Agents declare model-assisted work; Procedures declare model-free execution. ConfigMap and Secret resources supply configuration and credential references.</p><div class="kind-tabs" role="tablist" aria-label="Manifest examples"><button role="tab" id="tab-agent" aria-selected="true" aria-controls="manifest-panel" data-kind="agent">Agent</button><button role="tab" id="tab-procedure" aria-selected="false" aria-controls="manifest-panel" tabindex="-1" data-kind="procedure">Procedure</button><button role="tab" id="tab-resources" aria-selected="false" aria-controls="manifest-panel" tabindex="-1" data-kind="resources">Resources</button></div><p id="kind-description" class="kind-description">An Agent combines a container runtime with model configuration, instructions, tools, and completion gates.</p><a class="text-link" href="https://github.com/jasondeutsch/watts/blob/main/docs/kinds.md">Read the resource contracts ↗</a></div><div class="code-window"><div class="code-bar"><span id="code-filename">agent.yaml</span><span>Manifest excerpt</span></div><pre id="manifest-panel" role="tabpanel" aria-labelledby="tab-agent" tabindex="0"><code id="manifest-code">kind: Agent
-schema_version: 1
-name: builder
-spec:
-  container:
-    image: team/go-builder:0.1.0
-  tools:
-    - name: test
-      command:
-        argv: [go, test, ./...]
-        working_dir: /workspace
-  gates:
-    - name: tests-pass
-      tool: test
-      expect:
-        exit_code: 0</code></pre><div class="code-footer">Illustrative excerpts. See documentation for complete manifests.</div></div></section>
-<section class="evidence-section section" id="evidence"><div class="evidence-heading"><div class="eyebrow">Evaluation and accountability</div><h2>Assess outcomes<br>against resource use.</h2><p>Assess accepted work alongside reported tokens, elapsed time, known costs, and human intervention. Include failed attempts and rework so comparisons reflect the full execution.</p></div><div class="evidence-card"><div class="evidence-label">Evaluation record <span>What to retain</span></div><div class="record"><span>01 / Definition</span><strong>Workflow, values, images & inputs</strong></div><div class="record"><span>02 / Outcome</span><strong>Acceptance, checks & review findings</strong></div><div class="record"><span>03 / Resources</span><strong>Reported tokens, time & known cost</strong></div><div class="record"><span>04 / Judgment</span><strong>Same cases. Same rubric. Human review.</strong></div><p class="evidence-footnote">Unknown usage stays unknown. Reproducible conditions do not guarantee identical model output.</p></div></section>
+<section class="language-section section" id="language">
+<div class="language-intro"><div class="eyebrow">A Watts feature · ACL</div><h2>A language for<br>the development process.</h2><p>Watts includes ACL (Agent Configuration Language) to define workflows, agents, deterministic procedures, and MCP connections in <code>.acl</code> files. Typed variables and local modules compose reusable definitions without generating YAML or copying configuration between projects.</p>
+<div class="language-tabs" role="tablist" aria-label="ACL examples"><button role="tab" id="tab-workflow" aria-selected="true" aria-controls="language-panel" data-example="workflow">Workflow</button><button role="tab" id="tab-agent" aria-selected="false" aria-controls="language-panel" tabindex="-1" data-example="agent">Agent</button><button role="tab" id="tab-modules" aria-selected="false" aria-controls="language-panel" tabindex="-1" data-example="modules">Modules</button></div><p id="example-description" class="example-description">A workflow connects executors and named artifacts. Outcome routes make review feedback explicit; iteration limits bound that feedback loop.</p><a class="text-link" href="https://github.com/jasondeutsch/watts/blob/watts2/docs/language-spec.md">Read the ACL language specification ↗</a></div>
+<div class="code-window"><div class="code-bar"><span id="code-filename">workflow.acl</span><span>ACL excerpt</span></div><pre id="language-panel" role="tabpanel" aria-labelledby="tab-workflow" tabindex="0"><code id="language-code">workflow &quot;coding&quot; {
+  max_transitions = 20
+
+  stage &quot;build&quot; {
+    executor = agent.builder
+    inputs   = [&quot;SPEC.md&quot;, &quot;PLAN.md&quot;]
+    outputs  = { findings = &quot;BUILD.md&quot; }
+  }
+
+  stage &quot;review&quot; {
+    executor = agent.reviewer
+    inputs   = [stage.build.outputs.findings]
+    on &quot;changes-required&quot; {
+      return_to      = stage.build.name
+      max_iterations = 2
+    }
+    on &quot;success&quot; { return_to = &quot;end&quot; }
+  }
+}</code></pre><div class="code-footer">Excerpts from a package. Referenced declarations and assets must be supplied.</div></div>
+<div class="language-benefits"><article><h3>Review the process itself</h3><p>Agents, capabilities, artifact dependencies, and recovery routes live in source. Review changes to the workflow alongside changes to application code.</p></article><article><h3>Reuse without duplicating</h3><p>Import local modules and supply typed inputs. Teams can share a workflow or compose selected agents and procedures into their own.</p></article><article><h3>Keep execution inspectable</h3><p>Compilation resolves references and captures declared assets. Each task retains its resolved definition, so outcomes can be traced to the process that ran.</p></article></div>
+<div class="compile-strip"><div><h3>Compile first. Execute separately.</h3><p>Compilation validates local source and produces a self-contained JSON artifact. It does not start containers, call models, or contact Temporal.</p></div><pre aria-label="Compile, inspect, and execute a Watts package"><code>wctl compile ./watts -o coding.json
+wctl exec coding.json --dry-run
+wctl exec coding.json --name fix-cancellation</code></pre></div>
+</section>
+<section class="evidence-section section" id="evidence"><div class="evidence-heading"><div class="eyebrow">Evaluation and accountability</div><h2>Assess outcomes<br>against resource use.</h2><p>Assess accepted work alongside reported tokens, elapsed time, known costs, and human intervention. Include failed attempts and rework so comparisons reflect the full execution.</p></div><div class="evidence-card"><div class="evidence-label">Evaluation record <span>What to retain</span></div><div class="record"><span>01 / Definition</span><strong>ACL source, compiled definition, images &amp; inputs</strong></div><div class="record"><span>02 / Outcome</span><strong>Acceptance, checks & review findings</strong></div><div class="record"><span>03 / Resources</span><strong>Reported tokens, time & known cost</strong></div><div class="record"><span>04 / Judgment</span><strong>Same cases. Same rubric. Human review.</strong></div><p class="evidence-footnote">Unknown usage stays unknown. Reproducible conditions do not guarantee identical model output.</p></div></section>
 <section class="platform-section section" id="platform">
 <div class="eyebrow">Proposed managed operations</div>
 <h2>Operating workflows across a team</h2>
 <p class="section-intro">The proposed Watts Platform would manage orchestration, workload execution, evidence storage, and shared access. The aim is to reduce infrastructure maintenance while preserving inspectable, configurable workflow definitions.</p>
 <p class="platform-note">This remains a product concept. Distributed execution, complete usage accounting, and hardened multi-tenant isolation are open work.</p>
 </section>
-<section class="closing section"><div class="eyebrow">Project status and documentation</div><h2>Current implementation</h2><div class="closing-bottom"><p>Watts currently supports local Docker workloads, Temporal orchestration, pinned execution definitions, and retained attempt evidence. The documentation describes configuration, execution, recovery, and current limitations.</p><a class="button primary" href="https://github.com/jasondeutsch/watts/blob/main/docs/README.md">Read the documentation <span aria-hidden="true">↗</span></a></div></section>
+<section class="closing section"><div class="eyebrow">Project status and documentation</div><h2>Current implementation</h2><div class="closing-bottom"><p>Watts 0.1.0 supports ACL compilation, local module composition, local Docker workloads, Temporal orchestration, and retained attempt evidence. The documentation describes ACL authoring, compilation, execution, recovery, and current limitations.</p><a class="button primary" href="https://github.com/jasondeutsch/watts/blob/main/docs/README.md">Read the documentation <span aria-hidden="true">↗</span></a></div></section>
 </main>
 <footer class="footer"><a class="brand" href="#">watts<span class="brand-dot">.</span></a><span>Open-source core · MPL 2.0 · Prototype 0.1.0</span><div><a href="https://github.com/jasondeutsch/watts/blob/main/docs/README.md">Documentation ↗</a><a href="https://github.com/jasondeutsch/watts/blob/main/issues.md">Open work ↗</a></div></footer>
 </body></html>

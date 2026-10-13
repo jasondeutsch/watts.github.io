@@ -52,7 +52,7 @@ p { color: var(--muted); line-height: 1.75; }
 .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 30px; }
 .problem-grid h3 { font-size: 17px; margin: 0 0 10px; }
 .problem-grid p { font-size: 14px; margin: 0; }
-.system, .manifest-section, .evidence-section, .platform-section, .closing { border-top: 1px solid var(--line); }
+.system, .language-section, .evidence-section, .platform-section, .closing { border-top: 1px solid var(--line); }
 .section-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; margin-bottom: 28px; }
 .section-top > p { max-width: 410px; font-size: 15px; margin: 0; }
 .console { border: 1px solid var(--line); border-radius: 4px; background: var(--bg); overflow: hidden; }
@@ -83,12 +83,12 @@ dd { margin: 0; }
 .principles article > span { display: none; }
 .principles h3 { font-size: 17px; margin: 0 0 10px; }
 .principles p { font-size: 14px; margin: 0; }
-.manifest-section { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-.manifest-intro > p { font-size: 15px; max-width: 440px; }
-.kind-tabs { display: flex; gap: 8px; margin-top: 24px; }
-.kind-tabs button { background: white; border: 1px solid var(--line); color: var(--muted); border-radius: 3px; font-size: 12px; padding: 9px 12px; cursor: pointer; }
-.kind-tabs button[aria-selected=true] { color: var(--accent); border-color: var(--accent); background: #eef4f7; }
-.manifest-intro .kind-description { font-size: 13px; min-height: 70px; }
+.language-section { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.language-intro > p { font-size: 15px; max-width: 440px; }
+.language-tabs { display: flex; gap: 8px; margin-top: 24px; }
+.language-tabs button { background: white; border: 1px solid var(--line); color: var(--muted); border-radius: 3px; font-size: 12px; padding: 9px 12px; cursor: pointer; }
+.language-tabs button[aria-selected=true] { color: var(--accent); border-color: var(--accent); background: #eef4f7; }
+.language-intro .example-description { font-size: 13px; min-height: 70px; }
 .code-window { border: 1px solid var(--line); background: var(--surface); border-radius: 4px; align-self: center; overflow: hidden; }
 .code-bar { padding: 14px 18px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; font: 11px var(--mono); color: var(--muted); }
 pre { font: 12px/1.8 var(--mono); color: #334b5c; padding: 20px; margin: 0; overflow: auto; min-height: 370px; tab-size: 2; }
@@ -138,8 +138,8 @@ pre { font: 12px/1.8 var(--mono); color: #334b5c; padding: 20px; margin: 0; over
   .connector:nth-of-type(3) { display: block; }
   .connector:nth-of-type(2), .connector:nth-of-type(4) { display: none; }
   .loop { font-size: 9px; justify-content: center; }
-  .manifest-section, .evidence-section { grid-template-columns: 1fr; gap: 28px; }
-  .manifest-intro .kind-description { min-height: 0; }
+  .language-section, .evidence-section { grid-template-columns: 1fr; gap: 28px; }
+  .language-intro .example-description { min-height: 0; }
   pre { font-size: 11px; padding: 16px; min-height: 350px; }
   .evidence-card { padding: 18px; }
   .record strong { font-size: 13px; }
@@ -149,4 +149,18 @@ pre { font: 12px/1.8 var(--mono); color: #334b5c; padding: 20px; margin: 0; over
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+}
+
+.language-benefits { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.language-benefits h3 { font-size: 17px; margin: 0 0 10px; }
+.language-benefits p { font-size: 14px; margin: 0; }
+.compile-strip { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; border-top: 1px solid var(--line); padding-top: 24px; align-items: center; }
+.compile-strip h3 { font-size: 17px; margin: 0 0 10px; }
+.compile-strip p { font-size: 14px; margin: 0; }
+.compile-strip pre { min-height: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; font-size: 11px; white-space: pre-wrap; overflow-wrap: anywhere; }
+p code { font-family: var(--mono); font-size: .9em; }
+@media (max-width: 600px) {
+  .language-benefits, .compile-strip { grid-template-columns: 1fr; gap: 24px; }
+  nav { gap: 12px; }
+  .nav-source { display: none; }
 }

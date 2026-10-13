@@ -30,7 +30,7 @@
 <p>Watts gives teams a high-level abstraction and reusable building blocks for engineering their agentic software development process. Teams define workflows, run them under explicit contracts, record actions and outcomes, and use the evidence to improve the system over time.</p>
 <p>Watts Platform makes that system easy to adopt and operate. It manages the infrastructure and integration work, while a library of workflows gives teams a practical starting point. Teams retain an inspectable, customizable, versioned definition of how their software work happens.</p>
 <p>The central promise is a disciplined improvement cycle: <strong>define → execute → measure → compare → revise</strong>. Cost efficiency, token efficiency, quality, predictability, and human effort become properties the team can investigate and improve. Gains must be demonstrated through comparable outcomes and resource inputs.</p>
-<p>Status: product hypothesis, reviewed 2026-10-12. Watts is a 0.1.0 proof of concept with typed YAML resources, values-driven templates, pinned local execution definitions, Temporal orchestration, and local Docker workload execution. Complete usage accounting, distributed execution packages, hardened sandboxing, and the managed platform remain open work. Pi/Ralph is an example workload image; local container execution does not establish hardened multi-tenant isolation. The images below are product concepts. See <a href="https://github.com/jasondeutsch/watts/blob/main/docs/workflow-design.md">current architecture</a> and <a href="https://github.com/jasondeutsch/watts/blob/main/docs/stage-communication.md">proposed stage communication</a>.</p>
+<p>Status: product hypothesis, reviewed 2026-10-13. Watts is a 0.1.0 proof of concept with ACL declarations, typed variables, local modules, pinned local execution definitions, Temporal orchestration, and local Docker workload execution. Complete usage accounting, distributed execution packages, hardened sandboxing, and the managed platform remain open work. Pi/Ralph is an example workload image; local container execution does not establish hardened multi-tenant isolation. The images below are product concepts. See <a href="https://github.com/jasondeutsch/watts/blob/main/docs/workflow-design.md">current architecture</a> and <a href="https://github.com/jasondeutsch/watts/blob/main/docs/stage-communication.md">proposed stage communication</a>.</p>
 </section>
 <section class="slide" id="slide-2" aria-label="The problem: adoption without engineering rigor"><div class="slide-number">02 / 15</div><h2>The problem: adoption without engineering rigor</h2>
 <p>The market thesis is that widespread AI engineering investment is not consistently translating into meaningful, demonstrable organizational outcomes. Giving engineers access to coding agents does not establish an effective development system.</p>
@@ -55,7 +55,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>Versioned workflow manifests</td>
+<td>Versioned ACL workflow definitions</td>
 <td>Define the process explicitly, track changes, and pin the definition used by a task</td>
 </tr>
 <tr>
@@ -178,15 +178,16 @@
 </section>
 <section class="slide" id="slide-8" aria-label="Architecture: Kubernetes for agentic workflows"><div class="slide-number">08 / 15</div><h2>Architecture: Kubernetes for agentic workflows</h2>
 <p>The analogy describes a high-level, declarative contract over execution machinery. Teams define and version what should run, while the system resolves configuration, executes work, and records what happened.</p>
-<p>The resource model separates responsibilities:</p>
+<p>ACL makes the process an authored program rather than a collection of generated manifests:</p>
 <ul>
-<li><strong>Workflow:</strong> connects work, binds inputs, and owns routing, approval policy, and overall limits.</li>
-<li><strong>Procedure:</strong> defines model-free work such as commands and checks; approval/event waits remain orchestration states.</li>
-<li><strong>Agent:</strong> specializes executable work with a model, runtime, identity, instructions, skills, and tools.</li>
-<li><strong>ConfigMap and Secret:</strong> supply scoped configuration and credential references.</li>
+<li><strong>Workflow declarations</strong> connect executors, name artifact dependencies, and define bounded outcome routes.</li>
+<li><strong>Procedure declarations</strong> define deterministic container work or approval/event waits.</li>
+<li><strong>Agent declarations</strong> add model configuration, identity, instructions, skills, tools, and completion gates.</li>
+<li><strong>MCP, ConfigMap, and Secret declarations</strong> define service connections, nonsecret defaults, and credential-source references.</li>
+<li><strong>Typed variables and local modules</strong> customize and reuse those definitions without copying them between projects.</li>
 </ul>
-<p>A Watts package groups these resources; the proposed package model supports multiple named Workflows without an additional grouping Kind. Values-driven templates make the package customizable. An isolated workload is the proposed basic execution primitive for Agent and executable Procedure attempts; Pi and its Ralph tool run inside that boundary. Resource definitions, running instances, and execution evidence remain distinct.</p>
-<p>The current core implements typed YAML resources, package templating/composition, pinned local definitions, and Temporal execution. The distributed target adds self-contained packages, isolated workspaces, explicit revision publication, and durable artifact transfer. Temporal retains workflow orchestration; a local container backend or Kubernetes can supply execution capacity. See <a href="https://github.com/jasondeutsch/watts/blob/main/docs/container-workloads.md">container workloads</a> and <a href="https://github.com/jasondeutsch/watts/blob/main/docs/package-runtime-layout.md">package/runtime separation</a>.</p>
+<p>A package can declare multiple workflows; its entrypoint selects the workflow for a compiled artifact. <code>wctl compile</code> resolves references, validates contracts, and captures declared assets in self-contained JSON. <code>wctl exec</code> consumes that artifact. Compilation does not start runtime services or call model providers. Each task retains its resolved execution definition, supporting review of configuration changes and comparison of outcomes. See the <a href="https://github.com/jasondeutsch/watts/blob/watts2/docs/language-spec.md">ACL language specification</a>.</p>
+<p>The current core supports ACL compilation and local module composition, pinned local execution definitions, Temporal orchestration, and local Docker workloads. Distributed scheduling, durable artifact transfer, and hardened isolation remain open work. Temporal retains workflow orchestration; Kubernetes is a possible future execution backend. See <a href="https://github.com/jasondeutsch/watts/blob/main/docs/container-workloads.md">container workloads</a> and <a href="https://github.com/jasondeutsch/watts/blob/main/docs/package-runtime-layout.md">package/runtime separation</a>.</p>
 <p>The analogy should clarify ownership rather than dictate infrastructure scope. Customers should not need to operate Kubernetes or Temporal. Source-host publication is an adapter; Git is not a Watts core dependency.</p>
 </section>
 <section class="slide" id="slide-9" aria-label="Why Watts alongside Claude Code or Cursor?"><div class="slide-number">09 / 15</div><h2>Why Watts alongside Claude Code or Cursor?</h2>
@@ -213,7 +214,7 @@
 </tr>
 <tr>
 <td>Can another engineer reproduce the process?</td>
-<td>Shareable manifests, reusable resources, and declared execution conditions</td>
+<td>Shareable ACL packages, reusable modules, and declared execution conditions</td>
 </tr>
 <tr>
 <td>How do we stop every engineer starting from scratch?</td>
@@ -230,7 +231,7 @@
 </section>
 <section class="slide" id="slide-10" aria-label="A reasonable MVP"><div class="slide-number">10 / 15</div><h2>A reasonable MVP</h2>
 <p><strong>A managed environment in which a team can define a Go development workflow, run it, measure its outcomes and inputs, and evaluate a revised version.</strong></p>
-<p>Start with one supported Go service profile, one agent adapter, and two workflow packages: bounded bug repair and small feature implementation. The <a href="https://github.com/jasondeutsch/watts/blob/main/resources/examples/go_generalist/README.md">Go generalist example</a> is a seed, not evidence of cloud readiness.</p>
+<p>Start with one supported Go service profile, one agent adapter, and two workflow packages: bounded bug repair and small feature implementation. The <a href="https://github.com/jasondeutsch/watts/blob/main/resources/examples/coder_golang/README.md">Golang coder example</a> is a seed, not evidence of cloud readiness.</p>
 <p>The minimum usable product includes:</p>
 <ul>
 <li>Versioned, validated workflow definitions and a file-based customization path for stages, skills, MCP tools, checks, and routing.</li>
@@ -279,7 +280,7 @@
 <tr>
 <td>Governance</td>
 <td>Approved workflow versions, supported runtime/model policies, role-based approval authority, controlled exceptions, and a record of policy changes</td>
-<td>A policy in a manifest is only a declaration until enforced. Changes and overrides require attributable authority; governance must not become a rubber-stamp approval process.</td>
+<td>A policy in a workflow definition is only a declaration until enforced. Changes and overrides require attributable authority; governance must not become a rubber-stamp approval process.</td>
 </tr>
 <tr>
 <td>Data and credential control</td>
@@ -311,7 +312,7 @@
 <p>The principal risks:</p>
 <ul>
 <li>More stages and agents can increase token consumption, latency, and human review without improving quality.</li>
-<li>Versioned manifests cannot make models deterministic or compensate for inadequate context and acceptance criteria.</li>
+<li>Versioned definitions cannot make models deterministic or compensate for inadequate context and acceptance criteria.</li>
 <li>Incomplete usage attribution or inconsistent scoring can produce misleading efficiency comparisons.</li>
 <li>Teams may collect metrics without making disciplined changes or may find simpler automation sufficient.</li>
 <li>Coding tool vendors and observability platforms can expand into workflow management and evaluation.</li>

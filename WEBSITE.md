@@ -1,6 +1,6 @@
 # Watts website
 
-A static technical landing page for Watts and the proposed managed Watts Platform. No build step, dependencies, external fonts, analytics, or server-side services. Manifest tabs are progressive enhancement; the page remains readable without JavaScript. Execution examples are illustrative, not a live dashboard or measured product results.
+A static technical landing page for Watts and the proposed managed Watts Platform. No build step, dependencies, external fonts, analytics, or server-side services. ACL example tabs are progressive enhancement; the page remains readable without JavaScript. Execution examples are illustrative, not a live dashboard or measured product results.
 
 ## Preview
 
@@ -22,12 +22,12 @@ Upload `index.html`, `assets/`, and `slides/` to a bucket configured for static 
 
 ## Editing
 
-- `index.html`: copy, navigation, workflow illustration, and initial Agent excerpt.
+- `index.html`: copy, navigation, workflow illustration, and initial workflow excerpt.
 - `assets/style.css`: responsive layout and visual design.
-- `assets/site.js`: accessible manifest tabs and other manifest excerpts.
+- `assets/site.js`: accessible ACL tabs with Agent and module excerpts.
 - `assets/icon.svg`: favicon.
 
-The public source/documentation links point to `jasondeutsch/watts` on GitHub. Update them if the repository or default branch changes. Keep the current prototype capabilities separate from proposed platform features; do not substitute concept metrics for evaluation evidence.
+The public source/documentation links point to `jasondeutsch/watts` on GitHub. Update them if the repository or default branch changes. The ACL specification link points to the `watts2` branch, where the language implementation currently lives; switch it when that work reaches the default branch. Keep the current prototype capabilities separate from proposed platform features; do not substitute concept metrics for evaluation evidence.
 
 ## Unlinked project briefing
 
