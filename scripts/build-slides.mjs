@@ -10,7 +10,9 @@ const { marked } = await import(process.argv[2] ? pathToFileURL(path.resolve(pro
 const source = await readFile(path.join(root, 'SLIDES.md'), 'utf8');
 const notes = await readFile(path.join(root, 'PITCH.md'), 'utf8');
 const linkRepository = text => text.replaceAll('(../watts/', '(https://github.com/jasondeutsch/watts/blob/main/');
-const linkedSource = linkRepository(source);
+const report = await readFile(path.join(root, 'slides', 'report.html'));
+const reportVersion = createHash('sha256').update(report).digest('hex').slice(0, 12);
+const linkedSource = linkRepository(source).replaceAll('./report.html', `./report.html?v=${reportVersion}`);
 const sections = linkedSource.split(/^## /m);
 const images = [...notes.matchAll(/!\[[^\]]*\]\((images\/[^)]+)\)/g)].map(match => match[1]);
 const outputDir = path.join(root, 'slides');

@@ -18,6 +18,9 @@ details ol { columns: 2; padding-left: 24px; font-size: 16px; line-height: 1.8; 
 .slide strong { color: var(--text); font-weight: 650; }
 .slide small { display: block; font-size: 16px; line-height: 1.5; max-width: 850px; margin-top: 28px; color: var(--muted); }
 .slide a, .notes-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.report-preview > p { font-size: 16px; line-height: 1.6; max-width: 780px; }
+.report-preview .report-link { display: inline-block; margin: 0 24px 20px 0; font-size: 17px; }
+.report-preview iframe { display: block; width: 100%; height: 680px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
 .slide table { width: 100%; border-collapse: collapse; margin: 26px 0; font-size: 22px; line-height: 1.35; }
 .slide th, .slide td { border-bottom: 1px solid var(--line); padding: 16px 0; text-align: left; vertical-align: top; }
 .slide th:first-child, .slide td:first-child { width: 30%; padding-right: 24px; }
@@ -41,7 +44,7 @@ details ol { columns: 2; padding-left: 24px; font-size: 16px; line-height: 1.8; 
 }
 @media print {
   @page { size: landscape; margin: 14mm; }
-  .header, .footer, .cover details, .supporting-notes, .skip { display: none; }
+  .header, .footer, .cover details, .supporting-notes, .report-preview, .skip { display: none; }
   .briefing { max-width: none; padding: 0; }
   .cover { break-after: page; padding: 20px 0; }
   .slide { break-before: page; border: 0; min-height: auto; padding: 10px 0; }

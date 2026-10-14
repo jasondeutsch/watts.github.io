@@ -35,6 +35,28 @@ The briefing includes the proposed Core / Cloud / Enterprise / support business 
 
 The pitch is published at `/slides/` (or `<project-subpath>/slides/` on GitHub Pages). It is intentionally absent from the main page and navigation. Its HTML contains `noindex, nofollow`; anyone with the URL can read it. No authentication or routing configuration is required.
 
+Slide 3 includes an expandable task-report preview that opens on the usage graphs,
+with links to the graphs and the full report at `/slides/report.html`.
+The public snapshot is a sanitized, recorded Go feature eval from 2026-10-14,
+using Watts' report layout. Tokens, timings, decisions, and gate results retain
+their recorded values. Feedback is shortened, identities are generalized, and
+local paths, runtime IDs, raw logs, and evidence files are omitted. Its review
+result is Agent-reported; it is not independent product verification or a
+productivity claim. Missing cost, line-volume, and complexity remain unknown.
+
+The report is a checked-in static file, readable without JavaScript or a backend.
+Its usage view has panels for stage input/output/total tokens, cache reads/writes,
+first versus repeat visits, recorded duration, and reported cost. An attempt
+graph links each recorded model attempt to its details. Scales are panel-specific;
+cache counters are not added to token totals. This is a snapshot, not live Grafana
+telemetry.
+It is linked only from the briefing and has `noindex, nofollow`. This is navigation
+separation, not access control. When replacing the sample, sanitize a newly
+generated report and verify that every retained link is a fragment or a slides
+page; do not publish the task directory or raw evidence.
+Regenerate the slides after replacing the snapshot: the generator adds a content
+version to report links so the embedded demo loads the updated file.
+
 Deploy the root `slides/` directory along with `index.html` and `assets/`. The supporting notes include static copies of the four concept images and link repository documentation to GitHub. The deck remains readable without JavaScript; printing includes the cover and seven main slides, with supporting notes omitted.
 
 `SLIDES.md` is the seven-slide presentation source. `PITCH.md` supplies the expandable supporting notes, including the concept screens, detailed business model, architecture, risks, and evidence. Keep one main point per slide; use the notes for supporting detail rather than shrinking the slide text.

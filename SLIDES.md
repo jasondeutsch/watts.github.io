@@ -32,6 +32,14 @@ Teams struggle to answer:
 
 <small>This is the basis for observability, spend accountability, and governance. Enforced enterprise policy and protected audit retention are proposed capabilities.</small>
 
+<details class="report-preview">
+<summary>Explore the report and stage usage graphs</summary>
+<p>A recorded Go feature task: input/output tokens, cache usage, rework, timing, and reported cost by stage. Explore the graphs and click an attempt to inspect its details. This is a static, sanitized prototype record; unavailable measurements remain unknown.</p>
+<a class="report-link" href="./report.html#usage">Explore stage usage →</a>
+<a class="report-link" href="./report.html">Open the full report →</a>
+<iframe src="./report.html#usage" title="Watts stage usage graphs and task report" loading="lazy" sandbox></iframe>
+</details>
+
 ## Managed execution for teams without a platform team
 
 **A maintained starting workflow, customized for the team.**
